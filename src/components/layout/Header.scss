@@ -32,12 +32,17 @@
 
     .header-inner {
         height: 100%;
-        padding: 0 5%;
+        width: 100%;
+        max-width: $breakpoint-xl;
+        margin: 0 auto;
+        padding: 0 2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
         position: relative;
         z-index: 10;
+        box-sizing: border-box;
+        overflow: hidden;
 
         .header-logo {
             position: relative;
