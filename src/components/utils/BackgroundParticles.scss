@@ -1,0 +1,49 @@
+@import "../../../variables";
+
+.particles-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.particle-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: $color-info;
+  border-radius: 50%;
+  box-shadow: 0 0 10px $color-info;
+  animation: arcadePulse 2s infinite ease-in-out;
+}
+
+.particle-coin {
+  position: absolute;
+  color: #fbbf24;
+  opacity: 0.33;
+  font-family: $font-display;
+  font-size: 1.5rem;
+  font-weight: 900;
+  animation: arcadeBounce 3s infinite ease-in-out;
+}
+
+@keyframes arcadePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+}
+
+@keyframes arcadeBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+}

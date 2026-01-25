@@ -1,0 +1,8 @@
+@import '../variables.scss';
+
+html, body {
+     margin: 0;
+     box-sizing: border-box;
+     overflow-x: hidden;
+     font-family: $font-mono;
+}
