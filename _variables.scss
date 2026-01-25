@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500&family=Lexend:wght@300;400;600&display=swap');
+
+// Mode Standard
+:root {
+    // Font
+    --font-display: 'Pixelify Sans', cursive;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-sans: 'Lexend', sans-serif;
+
+    // Mode
+    --color-bg: #F8F9FA;
+    --color-surface: #FFFFFF;
+
+    // Palette Arcade
+    --color-primary: #6D28D9;
+    --color-secondary: #B45309;
+    --color-accent: #059669;
+    --color-info: #0369A1;
+
+    // Texte & UI
+    --color-text-main: #1A1625;
+    --color-text-muted: #52525B;
+    --color-border: #E5E7EB;
+}
+
+// Mode Glitch
+.dark {
+    --color-bg: #121212;
+    --color-surface: #1E1E1E;
+
+    // Palette de crise
+    --color-primary: #FF5F5F;
+    --color-secondary: #FF8000;
+    --color-accent: #CCFF00;
+    --color-info: #D8B4FE;
+
+    // Texte & UI
+    --color-text-main: #F3F4F6;
+    --color-text-muted: #9CA3AF;
+    --color-border: #6d1515;
+}
