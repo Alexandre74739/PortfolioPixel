@@ -1,14 +1,70 @@
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import BtnContact from "../utils/BtnContact";
+import BtnGhost from "../utils/BtnGhost";
+import "./Header.scss";
+
 function Header() {
+  const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  const closeMenu = () => setOpen(false);
+
+  const navLinks = [
+    { name: "Accueil", path: "/" },
+    { name: "A Propos", path: "/a-propos" },
+    { name: "Arcades", path: "/arcades" },
+  ];
+
   return (
-    <header className="header">
-      <nav className="nav">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/a-propos">About</a></li>
-          <li><a href="/arcades">Arcades</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </nav>
+    <header className={`main-header ${open ? "menu-is-open" : ""}`}>
+      <div className="scanline-overlay" />
+
+      <div className="header-inner">
+        <Link to="/" className="header-logo" onClick={closeMenu}>
+          <span className="text-main">ALEXANDRE</span>
+          <span className="text-glitch red">ALEXANDRE</span>
+          <span className="text-glitch blue">ALEXANDRE</span>
+        </Link>
+
+        <nav className="nav-desktop">
+          {navLinks.map((link) => (
+            <BtnGhost
+              key={link.path}
+              to={link.path}
+              isActive={pathname === link.path}
+            >
+              {link.name}
+            </BtnGhost>
+          ))}
+          <BtnContact to="/contact">CONTACT</BtnContact>
+        </nav>
+
+        <button className="burger-btn" onClick={() => setOpen(!open)}>
+          <span className="burger-bar" />
+          <span className="burger-bar" />
+          <span className="burger-bar" />
+        </button>
+      </div>
+
+      <div className={`mobile-menu-container ${open ? "show" : ""}`}>
+        <div className="mobile-overlay" onClick={closeMenu} />
+        <nav className="mobile-nav">
+          {navLinks.map((link) => (
+            <BtnGhost
+              key={link.path}
+              to={link.path}
+              isActive={pathname === link.path}
+              onClick={closeMenu}
+            >
+              {link.name}
+            </BtnGhost>
+          ))}
+          <BtnContact to="/contact" onClick={closeMenu}>
+            CONTACT
+          </BtnContact>
+        </nav>
+      </div>
     </header>
   );
 }
