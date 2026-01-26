@@ -81,14 +81,3 @@
         opacity: 0;
     }
 }
-
-@media (orientation: landscape) {
-    .mystery-block:not(.is-hit) {
-        background: $color-primary;
-        box-shadow: 0 0 15px $color-primary;
-
-        .q-mark {
-            color: $color-surface;
-        }
-    }
-}
