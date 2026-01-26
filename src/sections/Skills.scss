@@ -1,0 +1,192 @@
+@import "../../variables";
+
+.skills-arcade {
+    position: relative;
+    background: $color-bg;
+    min-height: 100vh;
+    padding: 120px 2rem 60px;
+    font-family: $font-mono;
+    color: $color-text-main;
+    transition: all 0.3s ease;
+    z-index: 1;
+    overflow: hidden;
+
+    canvas,
+    .background-particles-container {
+        position: absolute !important;
+        inset: 0;
+        z-index: -1 !important;
+        pointer-events: none;
+    }
+
+    .arcade-inner {
+        position: relative;
+        z-index: 10;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        .terminal-header {
+            margin-bottom: 5rem;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+
+            .glitch-title {
+                font-family: $font-display;
+                font-size: clamp(2rem, 8vw, 3.5rem);
+                color: $color-primary;
+                letter-spacing: 4px;
+                margin-bottom: 1rem;
+            }
+
+            .header-line {
+                height: 2px;
+                background: linear-gradient(90deg, transparent, $color-primary, transparent);
+                margin-bottom: 2rem;
+            }
+
+            .terminal-bio {
+                font-size: 1.1rem;
+                line-height: 1.8;
+
+                .prompt {
+                    color: $color-accent;
+                    font-weight: bold;
+                    margin-right: 10px;
+                }
+
+                strong {
+                    color: $color-primary;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+
+            @media (min-width: $breakpoint-m) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .skill-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                .skill-card {
+                    background: $color-surface;
+                    border: 2px solid $color-border;
+                    padding: 2rem;
+                    position: relative;
+                    overflow: hidden;
+                    clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease, border-color 0.3s ease;
+
+                    &:hover {
+                        border-color: $color-primary;
+                        transform: translateY(-5px);
+                        border-style: dashed;
+
+                        .card-scanner {
+                            animation: scan 2s linear infinite;
+                        }
+                    }
+
+                    .card-scanner {
+                        position: absolute;
+                        top: -100%;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(to bottom, transparent, rgba($color-primary, 0.1), transparent);
+                    }
+
+                    .card-top {
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: 0.7rem;
+                        margin-bottom: 1.5rem;
+                        font-weight: bold;
+
+                        .tier-badge {
+                            color: $color-accent;
+                            border: 1px solid $color-accent;
+                            padding: 2px 6px;
+                        }
+
+                        .class-label {
+                            color: $color-info;
+                        }
+                    }
+
+                    .skill-name {
+                        font-family: $font-display;
+                        font-size: 1.8rem;
+                        margin-bottom: 1rem;
+                    }
+
+                    .xp-container {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        margin-bottom: 1.5rem;
+
+                        .xp-bar {
+                            flex: 1;
+                            height: 6px;
+                            background: rgba($color-border, 0.3);
+                            border-radius: 3px;
+
+                            .xp-fill {
+                                height: 100%;
+                                background: $color-primary;
+                                box-shadow: 0 0 10px $color-primary;
+                            }
+                        }
+
+                        .xp-percent {
+                            font-size: 0.8rem;
+                            font-weight: bold;
+                        }
+                    }
+
+                    .skill-desc {
+                        font-size: 0.85rem;
+                        line-height: 1.5;
+                        opacity: 0.8;
+                        height: 3em;
+                    }
+                }
+
+                .skill-actions {
+                    display: flex;
+                    gap: 10px;
+
+                    button,
+                    a {
+                        flex: 1;
+                        text-align: center;
+                        justify-content: center;
+                        font-size: 0.8rem;
+                        padding: 10px 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes scan {
+    0% {
+        top: -100%;
+    }
+
+    100% {
+        top: 100%;
+    }
+}

@@ -1,10 +1,11 @@
 import Hero from "../sections/Hero";
+import Skills from "../sections/Skills";
 
 function Home() {
     return (
         <div>
             <Hero />
-            <div style={{ height: "100vh" }}></div>
+            <Skills />
         </div>
     );
 }

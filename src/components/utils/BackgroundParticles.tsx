@@ -13,8 +13,10 @@ const COUNT_COINS = 12;
 
 const STARS: ParticleData[] = Array.from({ length: COUNT_STARS }, (_, i) => ({
   id: i,
+  // Génère un nombre décimal entre 0 et 1, le multiplie par 100 et l'arondie à l'entier inférieur
   left: `${Math.floor(Math.random() * 100)}%`,
   top: `${Math.floor(Math.random() * 100)}%`,
+  // Génère une durée aléatoire entre 0 et 3 secondes et le limite à deux chiffres après la virgule
   delay: `${(Math.random() * 3).toFixed(2)}s`,
 }));
 
@@ -40,7 +42,7 @@ const BackgroundParticles: React.FC = () => {
           }}
         />
       ))}
-      
+
       {/* Pièces */}
       {COINS.map((c) => (
         <div

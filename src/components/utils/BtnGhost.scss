@@ -23,8 +23,8 @@
     &.active {
         transform: translate(5px, 5px);
         box-shadow: 0px 0px 0px transparent;
-        border-color: $color-accent;
-        color: $color-accent;
+        border-color: $color-primary;
+        color: $color-primary;
         pointer-events: none;
     }
 
