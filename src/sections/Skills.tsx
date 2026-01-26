@@ -86,7 +86,7 @@ function Skills() {
                 </div>
 
                 <div className="skill-actions">
-                  <BtnGhost to="/about">SELECT HISTOIRE</BtnGhost>
+                  <BtnGhost to="/a-propos">SELECT HISTOIRE</BtnGhost>
                   <BtnContact to={`/arcades`}>SELECT PROJECTS</BtnContact>
                 </div>
               </div>
