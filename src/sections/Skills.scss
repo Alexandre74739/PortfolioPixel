@@ -3,8 +3,7 @@
 .skills-arcade {
     position: relative;
     background: $color-bg;
-    min-height: 100vh;
-    padding: 120px 2rem 60px;
+    padding: 40px 2rem 60px;
     font-family: $font-mono;
     color: $color-text-main;
     transition: all 0.3s ease;
@@ -13,9 +12,8 @@
 
     canvas,
     .background-particles-container {
-        position: absolute !important;
+        position: absolute;
         inset: 0;
-        z-index: -1 !important;
         pointer-events: none;
     }
 
@@ -59,6 +57,21 @@
                 strong {
                     color: $color-primary;
                     font-weight: 500;
+                }
+            }
+
+            .btns {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 1.5rem;
+
+                @media (max-width: $breakpoint-lg) {
+                    justify-content: center;
+                }
+
+                @media (max-width: 480px) {
+                    flex-direction: column;
                 }
             }
         }

@@ -27,7 +27,7 @@ function Skills() {
       name: "JAVA",
       tier: "B-RANK",
       xp: "60%",
-      desc: "Backend robuste & micro-services.",
+      desc: "Backend robuste et structuré.",
       class: "tank",
     },
   ];
@@ -50,12 +50,15 @@ function Skills() {
               autant ludique que pertinente pour transformer chaque projet en
               une expérience inoubliable.
             </p>
+            <div className="btns">
+              <BtnContact to="/a-propos">SELECT HISTOIRE</BtnContact>
+              <BtnGhost to="/contact">SELECT CONTACT</BtnGhost>
+            </div>
           </div>
         </Reveal>
 
         <div className="skills-grid">
           {skillsData.map((skill) => (
-            /* On enveloppe chaque itération dans un Reveal */
             <Reveal key={skill.id}>
               <div className="skill-wrapper">
                 <div className={`skill-card ${skill.class}`}>
@@ -83,10 +86,8 @@ function Skills() {
                 </div>
 
                 <div className="skill-actions">
-                  <BtnGhost to="/">SELECT HISTOIRE</BtnGhost>
-                  <BtnContact to={`/arcades/${skill.id}`}>
-                    SELECT PROJECTS
-                  </BtnContact>
+                  <BtnGhost to="/about">SELECT HISTOIRE</BtnGhost>
+                  <BtnContact to={`/arcades`}>SELECT PROJECTS</BtnContact>
                 </div>
               </div>
             </Reveal>
