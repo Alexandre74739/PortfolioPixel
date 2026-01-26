@@ -62,6 +62,15 @@ function Hero() {
         </div>
 
         <div className="hero-experience">
+          <div className="text-container">
+            <div className="instruction-box">
+              <span className="cursor">{">"}</span>
+              <p>
+                SYSTÈME EN ATTENTE... GLISSEZ VITE LA PIÈCE POUR DÉBLOQUER L'ACCÈS
+              </p>
+            </div>
+          </div>
+
           <div
             className={`arcade-console ${isDropped ? "is-active" : ""}`}
             onDragOver={(e) => e.preventDefault()}
