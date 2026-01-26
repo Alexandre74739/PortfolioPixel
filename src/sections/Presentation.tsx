@@ -44,12 +44,13 @@ const Presentation = () => {
                 <div className="label" data-text="CURRENT_QUEST">
                   CURRENT_QUEST
                 </div>
-                <h3>Forgeron du Code</h3>
+                <h3>Magicien du Code</h3>
                 <p>
-                  Aujourd'hui, je transpose ma créativité dans l'apprentissage
-                  technique. Je construisainsi ma boîte à
-                  outils de développeur avec la même rigueur que je prépare
-                  mes grands jeux avec les enfants.
+                  Je ne parle pas de mon diplôme en prestidigitation mais de ma
+                  créativité et de mon apprentissage technique de{" "}
+                  <strong>React</strong> et <strong>JAVA</strong>. Je construis
+                  ainsi ma boîte à outils de développeur avec la même rigueur
+                  que je prépare mes grands jeux avec les enfants.
                 </p>
               </div>
             </div>

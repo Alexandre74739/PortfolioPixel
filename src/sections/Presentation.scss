@@ -60,6 +60,7 @@
                     border: 4px dashed var(--color-primary);
                     border-color: var(--color-primary);
                     transform: translateX(10px);
+                    box-shadow: 0 0 20px $color-primary;
                 }
 
                 .text-aboutMe {
