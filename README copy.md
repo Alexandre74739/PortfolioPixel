@@ -30,3 +30,6 @@ Le portfolio propose deux ambiances visuelles distinctes :
 * **[Sass (SCSS)](https://sass-lang.com/)** : Utilisé pour le style et les animations complexes (effets de glitch, transitions de sprites, keyframes avancées).
   
   ```npm install -D sass```
+
+* **[Framer motion]** : Utilisé pour le reveal des blocs
+  ```npm instamm framer-motion```

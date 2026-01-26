@@ -18,7 +18,6 @@ function Hero() {
     <section className="hero-section">
       <BackgroundParticles />
       <div className="scanline" />
-
       <div className="hero-container">
         <div className="hero-content">
           <div className="content-inner">
@@ -104,7 +103,12 @@ function Hero() {
 
       {isDropped && (
         <div className="modal-overlay" onClick={() => setIsDropped(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()} /* Evite de fermer la modal en cliquant dessus */>
+          <div
+            className="modal-content"
+            onClick={(e) =>
+              e.stopPropagation()
+            } /* Evite de fermer la modal en cliquant dessus */
+          >
             <h2 className="modal-title">READY PLAYER ONE</h2>
             <p className="modal-text">
               Console activée !
