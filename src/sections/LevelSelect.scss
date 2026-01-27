@@ -17,6 +17,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        z-index: 10;
     }
 
     .main-grid {
@@ -269,7 +270,7 @@
                     color: var(--color-primary);
                     animation: slideIn 0.4s ease-out forwards;
                     opacity: 0;
-                    background: rgba(var(--color-primary-rgb), 0.05);
+                    background: $color-bg;
                     transition: 0.3s ease;
 
                     &:hover {

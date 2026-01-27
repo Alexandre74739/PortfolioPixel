@@ -1,47 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Reveal } from "../components/layout/Reveal";
+import { createClient } from "@supabase/supabase-js";
 import BackgroundParticles from "../components/utils/BackgroundParticles";
 import BtnContact from "../components/utils/BtnContact";
 import BtnGhost from "../components/utils/BtnGhost";
 import "./LevelSelect.scss";
 
-const categories = [
-  {
-    id: 0,
-    title: "REACT",
-    tag: "FRONTEND",
-    desc: "Architecture de composants et interfaces dynamiques ultra-performantes.",
-    details:
-      "Maîtrise du Virtual DOM, des Hooks personnalisés et de l'optimisation du rendu pour une UX fluide.",
-    tech: ["React", "TypeScript", "Framer", "Sass"],
-  },
-  {
-    id: 1,
-    title: "UX / UI",
-    tag: "DESIGN",
-    desc: "Conception centrée utilisateur et prototypes interactifs.",
-    details:
-      "Création de parcours intuitifs, respect des normes d'accessibilité.",
-    tech: ["Figma", "Testing", "UI/UX", "Prototyping"],
-  },
-  {
-    id: 2,
-    title: "JAVA_CORE",
-    tag: "BACKEND",
-    desc: "Programmation orientée objet et architectures typée robustes.",
-    details: "Conception de mini jeux",
-    tech: ["Java"],
-  },
-];
+const supabase = createClient(
+  "https://ehqrctyduhhiesscpxlc.supabase.co",
+  "sb_publishable_d3PLocPLQdML-l7IPTKNEA_4dDwog0b",
+);
+
+type Project = {
+  id: number;
+  tag: string;
+  title: string;
+  description: string;
+  details: string;
+  tech: string[];
+  site_url: string;
+};
 
 function LevelSelect() {
+  const [projects, setProjects] = useState<Project[]>([]);
   const [index, setIndex] = useState(0);
 
-  const next = () => setIndex((prev) => (prev + 1) % categories.length);
-  const prev = () =>
-    setIndex((prev) => (prev - 1 + categories.length) % categories.length);
+  useEffect(() => {
+    supabase
+      .from("Projects") // Cible la table nommée Projects
+      .select("*") // Demande de récupérer toutes les colonnes
+      .order("id", { ascending: true }) // Trie les projets par leur identifiant (du plus petit au plus grand)
+      .then(({ data }) => setProjects(data || []));
+  }, []);
 
-  const current = categories[index];
+  const next = () => setIndex((index + 1) % projects.length);
+  const prev = () => setIndex((index - 1 + projects.length) % projects.length);
+
+  // Empêcher le rendu si les données ne sont pas là
+  if (!projects || projects.length === 0) {
+    return;
+  }
+
+  const current = projects[index];
 
   return (
     <section className="levelSelect">
@@ -58,17 +58,17 @@ function LevelSelect() {
                     <div className="lcd-content">
                       <span className="type-label">{current.tag}</span>
                       <h3>{current.title}</h3>
-                      <p>{current.desc}</p>
+                      <p>{current.description}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="interface">
                   <div className="d-pad">
-                    <button className="up" onClick={() => {}}></button>
+                    <button className="up"></button>
                     <button className="left" onClick={prev}></button>
                     <button className="right" onClick={next}></button>
-                    <button className="down" onClick={() => {}}></button>
+                    <button className="down"></button>
                   </div>
 
                   <div className="action-btns">
@@ -89,31 +89,32 @@ function LevelSelect() {
               <div className="info-block">
                 <h2>MODE PROJETS</h2>
                 <p className="context">
-                  Le code n'est qu'un langage, mais l'expérience est l'histoire
-                  que je raconte. Je fusionne mon expérience de développeur et
-                  d'animateur pour donner vie à à mes projets.
+                  Exploration des archives numériques. Sélectionnez un projet
+                  pour voir les détails techniques et les liens de déploiement.
                 </p>
-                <BtnGhost to="/arcades">SELECT PROJECTS</BtnGhost>
+                <BtnGhost to="/arcades">LISTE COMPLÈTE</BtnGhost>
               </div>
             </Reveal>
 
             <Reveal>
               <div className="specs-block">
-                <h3>Prêt à commencer l'aventure</h3>
+                <h3>Détails techniques</h3>
                 <p className="long-desc">{current.details}</p>
 
                 <div className="inventory">
-                  {current.tech.map((t, i) => (
-                    <span
-                      key={t}
-                      className="tech-badge"
-                      style={{ animationDelay: `${i * 0.05}s` }}
-                    >
-                      {t}
-                    </span>
-                  ))}
+                  {current.tech &&
+                    current.tech.map((t, i) => (
+                      <span
+                        key={i}
+                        className="tech-badge"
+                        style={{ animationDelay: `${i * 0.05}s` }}
+                      >
+                        {t}
+                      </span>
+                    ))}
                 </div>
-                <BtnContact to="/arcades/">SEE MORE</BtnContact>
+
+                <BtnContact to={`/arcades/${current.title.toLowerCase()}`}>VOIR LE SITE</BtnContact>
               </div>
             </Reveal>
           </div>

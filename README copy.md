@@ -32,4 +32,10 @@ Le portfolio propose deux ambiances visuelles distinctes :
   ```npm install -D sass```
 
 * **[Framer motion]** : Utilisé pour le reveal des blocs
+  
   ```npm instamm framer-motion```
+
+### API
+* **[Supabase](https://supabase.com/)** : Gestion d'une base de données pour modifier le nombre de projets, leur affichage et leur description
+  
+  ```npm install @supabase/supabase-js```
