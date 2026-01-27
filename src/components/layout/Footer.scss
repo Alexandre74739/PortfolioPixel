@@ -1,0 +1,134 @@
+@import "../../../variables";
+
+.main-footer {
+    position: relative;
+    width: 100%;
+    background: #121212;
+    padding: 2rem 0;
+    font-family: $font-display;
+    transition: 0.3s ease;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(to right, $color-primary, $color-accent, $color-secondary, $color-primary);
+        background-size: 200% auto;
+        animation: gradientFlow 3s linear infinite;
+    }
+
+
+
+    .footer-container {
+        max-width: $breakpoint-xl;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+
+        @media (min-width: $breakpoint-lg) {
+            grid-template-columns: 1.2fr 1fr 1.2fr;
+            text-align: left;
+        }
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+
+        a {
+            color: $color-bg;
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            position: relative;
+            transition: 0.3s ease;
+
+            &:hover {
+                color: $color-primary;
+
+                &::before {
+                    content: ">";
+                    position: absolute;
+                    left: -12px;
+                }
+            }
+        }
+    }
+
+    .social-items {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        @media (min-width: $breakpoint-lg) {
+            align-items: flex-end;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            font-size: 1.4rem;
+
+            a {
+                color: #666;
+                transition: 0.3s;
+
+                &:hover {
+                    color: $color-primary;
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+
+    .status-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        color: $color-primary;
+        font-size: 1rem;
+        margin-bottom: 8px;
+
+        @media (min-width: $breakpoint-lg) {
+            justify-content: flex-start;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: $color-primary;
+            border-radius: 50%;
+            box-shadow: 0 0 8px $color-primary;
+            animation: blink 1s infinite;
+        }
+    }
+
+    .copyright,
+    .score-display p {
+        font-size: 0.75rem;
+        color: $color-border;
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
