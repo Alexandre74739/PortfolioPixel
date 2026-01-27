@@ -1,0 +1,361 @@
+@import "../../variables";
+
+.tetris-master-section {
+    position: relative;
+    min-height: 100vh;
+    margin: 0 5%;
+    padding: 80px 0;
+    background: $color-surface;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    box-sizing: border-box;
+
+    h1 {
+        font-family: $font-display;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        margin: 1rem 0 2rem;
+        text-transform: uppercase;
+        z-index: 10;
+        text-align: center;
+    }
+
+    .container {
+        width: 100%;
+        max-width: $breakpoint-xl;
+        padding: 0 1rem 2rem;
+        z-index: 10;
+        flex: 1;
+        display: flex;
+    }
+
+    .hero-grid-layout {
+        display: grid;
+        grid-template-columns: 260px 1fr 300px;
+        gap: 1.5rem;
+        width: 100%;
+
+        @media (max-width: $breakpoint-lg) {
+            grid-template-columns: 1fr;
+            height: auto;
+        }
+    }
+
+    .inventory-panel,
+    .content-panel,
+    .construction-zone {
+        position: relative;
+        background-color: $color-surface;
+        border: 4px solid #000;
+        box-shadow: 8px 8px 0px #000;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .inventory-panel {
+        padding: 1.2rem;
+        max-height: 70vh;
+
+        @media (max-width: $breakpoint-lg) {
+            order: 2;
+            max-height: $breakpoint-xs;
+        }
+
+        .pieces-grid {
+            flex: 1;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 4px;
+            margin-bottom: 1rem;
+
+            &::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: #000;
+            }
+        }
+    }
+
+    .construction-zone {
+        min-height: $breakpoint-xs;
+
+        @media (max-width: $breakpoint-lg) {
+            order: 1;
+        }
+
+        .terminal-top {
+            background-color: #000;
+            color: $color-surface;
+            padding: 12px 16px;
+            font-family: $font-display;
+            font-size: 0.8rem;
+        }
+
+        .main-board {
+            flex: 2;
+            background-color: $color-surface;
+            border-bottom: 4px dashed #eee;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            overflow: hidden;
+
+            .stack-area {
+                display: flex;
+                flex-wrap: wrap-reverse;
+                gap: 10px;
+                width: 100%;
+            }
+        }
+
+        .description-dynamic {
+            flex: 1;
+            background: $color-bg;
+            padding: 1.5rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+
+            h3 {
+                font-family: $font-display;
+                font-size: 0.8rem;
+                color: $color-text-main;
+                margin-bottom: 10px;
+            }
+
+            .log-scroll {
+                overflow-y: auto;
+                flex: 1;
+
+                .log-line {
+                    font-size: 0.9rem;
+                    margin-bottom: 8px;
+
+                    span {
+                        color: $color-primary;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+    .right-col {
+        @media (max-width: $breakpoint-lg) {
+            order: 3;
+        }
+    }
+
+    .content-panel {
+        padding: 1.5rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .manifesto {
+            h2 {
+                font-family: $font-display;
+                font-size: 1.1rem;
+                border-bottom: 3px solid #000;
+                padding-bottom: 12px;
+                margin-bottom: 1rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+        }
+
+        .quote-box {
+            margin: 1.5rem 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+
+            blockquote {
+                font-family: $font-display;
+                font-size: 0.9rem;
+                border-left: 4px solid $color-primary;
+                padding: 4px 0 4px 1rem;
+                margin: 0;
+                font-style: italic;
+                text-align: left;
+            }
+
+            cite {
+                display: block;
+                margin-top: 10px;
+                padding-left: 1.25rem;
+                font-size: 0.7rem;
+                color: #999;
+            }
+        }
+
+        .final-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 1.5rem;
+            border-top: 2px solid #eee;
+        }
+    }
+
+    .panel-header {
+        position: relative;
+        display: inline-block;
+        font-family: $f-display;
+        font-size: 0.8rem;
+        color: $color-bg;
+        background-color: #000;
+        padding: 8px 16px;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+
+        &::before,
+        &::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+        }
+
+        &::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        &::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+
+        &:hover {
+            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+
+            &::before,
+            &::after {
+                display: block;
+            }
+        }
+    }
+
+    .tetris-piece {
+        aspect-ratio: 1/1;
+        border: 3px solid #000;
+        box-shadow: 4px 4px 0px #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $font-display;
+        font-size: 0.75rem;
+        cursor: grab;
+        transition: transform 0.1s;
+
+        &.blue {
+            background: #00fbff;
+        }
+
+        &.violet {
+            background: #bd00ff;
+            color: $color-surface;
+        }
+
+        &.yellow {
+            background: #ffcc00;
+        }
+
+        &.green {
+            background: #00ff88;
+        }
+
+        &.red {
+            background: #ff4444;
+            color: $color-surface;
+        }
+
+        &.orange {
+            background: #ffaa00;
+        }
+
+        &.locked {
+            opacity: 0.15;
+            filter: grayscale(1);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        &:active:not(.locked) {
+            cursor: grabbing;
+            transform: scale(0.95);
+        }
+    }
+
+    .placed-piece {
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        animation: dropIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        &:hover {
+            opacity: 0.8;
+            transform: translateY(-3px);
+        }
+    }
+
+    .reboot-btn {
+        background: #000;
+        color: $color-surface;
+        border: none;
+        padding: 12px;
+        font-family: $font-display;
+        font-size: 0.7rem;
+        cursor: pointer;
+        transition: 0.3s ease;
+
+        &:hover {
+            background: $color-primary;
+        }
+    }
+
+    .bg-decorations {
+        position: absolute;
+        inset: 0;
+
+        .grid-background {
+            position: absolute;
+            inset: 0;
+            background-size: 40px 40px;
+        }
+
+        .floating-cube {
+            position: absolute;
+            top: 15%;
+            right: 10%;
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(0, 0, 0, 0.05);
+            animation: rotateCube 15s infinite linear;
+        }
+    }
+}
