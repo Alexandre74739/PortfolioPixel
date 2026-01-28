@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./MysteryBlock.scss";
 
-const MysteryBlock = () => {
+interface MysteryBlockProps {
+  content: string;
+}
+
+const MysteryBlock = ({ content }: MysteryBlockProps) => {
   const [isHit, setIsHit] = useState(false);
   const [showCoin, setShowCoin] = useState(false);
 
@@ -29,7 +33,7 @@ const MysteryBlock = () => {
       >
         {showCoin && <div className="mario-coin">⭐</div>}
         <div className="block-face">
-          <span className="q-mark">?</span>
+          <span className="q-mark">{content}</span>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import Hero from "../sections/Hero";
 import EasterEgg from "../sections/SpaceManifesto";
 import Skills from "../sections/Skills";
-import LevelSelect from "../sections/LevelSelect";
+import LevelSelect, { type LevelData } from "../sections/LevelSelect";
 
 const supabase = createClient(
   "https://ehqrctyduhhiesscpxlc.supabase.co",
@@ -22,7 +22,7 @@ function Home() {
 
       if (data && !error) {
         // On adapte les données Supabase au format LevelData attendu par le composant
-        const formattedData = data.map((p: any) => ({
+        const formattedData = data.map((p) => ({
           id: p.id,
           tag: p.tag,
           title: p.title,
