@@ -34,7 +34,7 @@ const JeuxAbout = () => {
         <div className="hero-grid-layout">
           {/* Inventaire */}
           <aside className="inventory-panel">
-            <div className="panel-header">SKILLS_LIBRARY</div>
+            <div className="panel-header">COMPÉTENCES</div>
             <div className="pieces-grid">
               {library.map((b) => (
                 <TetrisPiece
@@ -46,7 +46,7 @@ const JeuxAbout = () => {
               ))}
             </div>
             <button className="reboot-btn" onClick={() => setPlaced([])}>
-              REBOOT_SYSTEM
+              NOUVELLE PARTIE
             </button>
           </aside>
 
@@ -72,7 +72,7 @@ const JeuxAbout = () => {
               </div>
             </div>
             <div className="description-dynamic">
-              <h3>LOG_OUTPUT:</h3>
+              <h3>CONSOLE.LOG ()</h3>
               <div className="log-scroll">
                 {placed.length ? (
                   placed.map((b) => (
