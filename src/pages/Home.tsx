@@ -10,7 +10,6 @@ function Home() {
             <Hero />
             <EasterEgg />
             <Skills />
-            <Presentation />
             <LevelSelect />
         </div>
     );

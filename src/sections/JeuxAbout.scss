@@ -328,8 +328,9 @@
     }
 
     .reboot-btn {
-        background: #000;
+        background: $color-text-main;
         color: $color-surface;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
         border: none;
         padding: 12px;
         font-family: $font-display;
