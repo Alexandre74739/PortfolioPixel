@@ -8,10 +8,48 @@ import "./Hero.scss";
 function Hero() {
   const [isDropped, setIsDropped] = useState(false);
   const [isSecure, setIsSecure] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [coinPosition, setCoinPosition] = useState({ x: 0, y: 0 });
 
   const onDropAction = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDropped(true);
+    setIsDragging(false);
+  };
+
+  // Gestion du drag tactile (mobile)
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    const touch = e.touches[0];
+    setCoinPosition({ x: touch.clientX, y: touch.clientY });
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    setCoinPosition({ x: touch.clientX, y: touch.clientY });
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+
+    const touch = e.changedTouches[0];
+    const dropZone = document.querySelector(".arcade-console");
+
+    if (dropZone) {
+      const rect = dropZone.getBoundingClientRect();
+      const isOverDropZone =
+        touch.clientX >= rect.left &&
+        touch.clientX <= rect.right &&
+        touch.clientY >= rect.top &&
+        touch.clientY <= rect.bottom;
+
+      if (isOverDropZone) {
+        setIsDropped(true);
+      }
+    }
+
+    setIsDragging(false);
   };
 
   return (
@@ -66,7 +104,8 @@ function Hero() {
             <div className="instruction-box">
               <span className="cursor">{">"}</span>
               <p>
-                SYSTÈME EN ATTENTE... GLISSEZ VITE LA PIÈCE POUR DÉBLOQUER L'ACCÈS
+                SYSTÈME EN ATTENTE... GLISSEZ VITE LA PIÈCE POUR DÉBLOQUER
+                L'ACCÈS
               </p>
             </div>
           </div>
@@ -102,7 +141,21 @@ function Hero() {
             <div
               draggable
               onDragStart={(e) => e.dataTransfer.setData("text", "coin")}
-              className="arcade-coin"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              className={`arcade-coin ${isDragging ? "is-dragging" : ""}`}
+              style={
+                isDragging
+                  ? {
+                      position: "fixed",
+                      left: `${coinPosition.x - 30}px`,
+                      top: `${coinPosition.y - 30}px`,
+                      pointerEvents: "none",
+                      zIndex: 1000,
+                    }
+                  : {}
+              }
             >
               <span>A</span>
             </div>

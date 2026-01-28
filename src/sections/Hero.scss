@@ -416,11 +416,20 @@
                 margin-top: 2rem;
                 box-shadow: 0 5px 0 #78350f;
                 transition: 0.2s;
+                touch-action: none;
+                user-select: none;
+                -webkit-user-select: none;
+
+                &.is-dragging {
+                    cursor: grabbing;
+                    transition: none;
+                }
 
                 span {
                     font-size: 1.5rem;
                     font-weight: 900;
                     color: #78350f;
+                    pointer-events: none;
                 }
 
                 &:hover {
