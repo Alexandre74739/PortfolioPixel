@@ -59,6 +59,7 @@
     .inventory-panel {
         padding: 1.2rem;
         max-height: 70vh;
+        z-index: 100;
 
         @media (max-width: $breakpoint-lg) {
             order: 2;
@@ -114,6 +115,7 @@
                 flex-wrap: wrap-reverse;
                 gap: 10px;
                 width: 100%;
+                pointer-events: auto;
             }
         }
 
@@ -318,6 +320,7 @@
     .placed-piece {
         width: 60px;
         height: 60px;
+        pointer-events: all;
         cursor: pointer;
         animation: dropIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
