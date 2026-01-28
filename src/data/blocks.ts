@@ -18,7 +18,7 @@ export const library: Block[] = [
   {
     id: "ts",
     label: "TS",
-    color: "violet",
+    color: "yellow",
     shape: "i-shape",
     text: "Architecture typée pour un code robuste.",
   },
@@ -56,13 +56,6 @@ export const library: Block[] = [
     color: "blue",
     shape: "t-shape",
     text: "Programmation orienté objet.",
-  },
-  {
-    id: "api",
-    label: "REST",
-    color: "violet",
-    shape: "i-shape",
-    text: "Conception de routes et documentation Swagger.",
   },
   {
     id: "framer",
