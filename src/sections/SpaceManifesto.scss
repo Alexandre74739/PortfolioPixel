@@ -1,0 +1,123 @@
+@import "../../variables";
+
+.space-invader-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 5%;
+  background-color: $color-bg;
+
+  .battle-hud {
+    width: 100%;
+    max-width: $breakpoint-xl;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .invaders-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+
+    .invader-unit {
+      width: 40px;
+
+      @media (max-width: $breakpoint-xs) {
+        width: 30px;
+      }
+    }
+  }
+
+  .scanner-text {
+    text-align: center;
+    font-family: $font-display;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    color: $color-primary;
+    letter-spacing: 4px;
+    margin-bottom: 2rem;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: stretch;
+    gap: 1.5rem;
+
+    .data-block {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+      background: $color-surface;
+      border: 2px solid $color-border;
+      box-shadow: 8px 8px 0px $color-text-main;
+      transition: all 0.15s cubic-bezier(0.175, 0.885, 0.33, 1.275);
+      cursor: default;
+
+      &:hover {
+        transform: translate(-4px, -4px) scale(1.02);
+        box-shadow: 12px 12px 0px $color-primary;
+        border-color: $color-primary;
+      }
+
+      .coord {
+        font-family: $f-display;
+        font-size: 0.8rem;
+        color: $color-primary;
+        font-weight: bold;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-transform: uppercase;
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      strong {
+        color: $color-primary;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .radar-module {
+    margin: 32px auto 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: $color-surface;
+    padding: 12px 24px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+    .radar-ping {
+      width: 10px;
+      height: 10px;
+      background: #000;
+      border-radius: 50%;
+      animation: pulse-radar-light 2s infinite;
+    }
+
+    .status-label {
+      font-family: $font-display;
+      font-size: 0.7rem;
+      color: #666;
+    }
+
+    .secret-coord {
+      color: $color-primary;
+      font-size: 0.8rem;
+      margin: 0;
+      font-weight: bold;
+    }
+  }
+}
