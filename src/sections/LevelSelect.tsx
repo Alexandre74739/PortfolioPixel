@@ -92,7 +92,7 @@ function LevelSelect() {
                   Exploration des archives numériques. Sélectionnez un projet
                   pour voir les détails techniques et les liens de déploiement.
                 </p>
-                <BtnGhost to="/arcades">LISTE COMPLÈTE</BtnGhost>
+                <BtnGhost to="/arcades">INVENTAIRE CARTOUCHES</BtnGhost>
               </div>
             </Reveal>
 
@@ -114,7 +114,7 @@ function LevelSelect() {
                     ))}
                 </div>
 
-                <BtnContact to={`/arcades/${current.title.toLowerCase()}`}>VOIR LE SITE</BtnContact>
+                <BtnContact to={`/arcades/${current.title.toLowerCase()}`}>EXPLORER LE PROJET</BtnContact>
               </div>
             </Reveal>
           </div>

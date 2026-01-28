@@ -55,7 +55,7 @@ function Hero() {
             </p>
 
             <div className="hero-actions">
-              <BtnContact to="/a-propos">SELECT HISTOIRE</BtnContact>
+              <BtnContact to="/histoire">SELECT HISTOIRE</BtnContact>
               <BtnGhost to="/arcades">SELECT PROJECTS</BtnGhost>
             </div>
           </div>
@@ -125,7 +125,7 @@ function Hero() {
               Prêt pour l'aventure ?
             </p>
             <div className="modal-buttons">
-              <Link to="/a-propos" className="btn-modal-secondary">
+              <Link to="/histoire" className="btn-modal-secondary">
                 JE VEUX CONNAITRE L'HISTOIRE
               </Link>
               <Link to="/arcades" className="btn-modal-primary">

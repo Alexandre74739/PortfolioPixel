@@ -5,7 +5,7 @@ import './App.scss';
 
 // Pages
 import Home from "./pages/Home";
-import About from "./pages/About";
+import Histoire from "./pages/Histoire";
 import Arcades from "./pages/Arcades";
 import Contact from "./pages/Contact";
 
@@ -18,7 +18,7 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/a-propos" element={<About />} />
+            <Route path="/histoire" element={<Histoire />} />
             <Route path="/arcades" element={<Arcades />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

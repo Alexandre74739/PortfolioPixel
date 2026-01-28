@@ -47,11 +47,11 @@ function Skills() {
               <strong>l'animation</strong>, l'alliance entre
               <strong> l'esthétique rétro</strong> et les{" "}
               <strong>performances modernes</strong>. Je conçois des interfaces
-              autant ludique que pertinente pour transformer chaque projet en
+              autant ludiques que pertinentes pour transformer chaque projet en
               une expérience inoubliable.
             </p>
             <div className="btns">
-              <BtnContact to="/a-propos">SELECT HISTOIRE</BtnContact>
+              <BtnContact to="/histoire">SELECT HISTOIRE</BtnContact>
               <BtnGhost to="/contact">SELECT CONTACT</BtnGhost>
             </div>
           </div>
@@ -86,7 +86,7 @@ function Skills() {
                 </div>
 
                 <div className="skill-actions">
-                  <BtnGhost to="/a-propos">SELECT HISTOIRE</BtnGhost>
+                  <BtnGhost to="/histoire">SELECT HISTOIRE</BtnGhost>
                   <BtnContact to={`/arcades`}>SELECT PROJECTS</BtnContact>
                 </div>
               </div>

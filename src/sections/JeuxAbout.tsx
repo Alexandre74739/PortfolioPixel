@@ -4,6 +4,8 @@ import { TetrisPiece, InfoPanel } from "../components/utils/JeuxAboutComponents"
 import { library } from "../data/blocks";
 import BtnContact from "../components/utils/BtnContact";
 import BtnGhost from "../components/utils/BtnGhost";
+import BackgroundParticles from "../components/utils/BackgroundParticles";
+import { Reveal } from "../components/layout/Reveal";
 
 const JeuxAbout = () => {
   const [placed, setPlaced] = useState<any[]>([]);
@@ -22,7 +24,9 @@ const JeuxAbout = () => {
   };
 
   return (
+    <Reveal>
     <section className="tetris-master-section">
+      <BackgroundParticles />
       <div className="bg-decorations">
         <div className="grid-background"></div>
         <div className="floating-cube"></div>
@@ -100,6 +104,7 @@ const JeuxAbout = () => {
         </div>
       </div>
     </section>
+    </Reveal>
   );
 };
 

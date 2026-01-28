@@ -24,7 +24,7 @@ const Footer = ({ currentTheme }: FooterProps) => {
 
         <nav className="footer-section navigation">
           <Link to="/">ACCUEIL</Link>
-          <Link to="/a-propos">A PROPOS</Link>
+          <Link to="/histoire">HISTOIRE</Link>
           <Link to="/arcades">ARCADES</Link>
           <Link to="/contact">CONTACT</Link>
         </nav>
