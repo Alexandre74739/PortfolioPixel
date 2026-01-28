@@ -1,52 +1,44 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Reveal } from "../components/layout/Reveal";
-import { createClient } from "@supabase/supabase-js";
 import BackgroundParticles from "../components/utils/BackgroundParticles";
 import BtnContact from "../components/utils/BtnContact";
 import BtnGhost from "../components/utils/BtnGhost";
 import "./LevelSelect.scss";
 
-const supabase = createClient(
-  "https://ehqrctyduhhiesscpxlc.supabase.co",
-  "sb_publishable_d3PLocPLQdML-l7IPTKNEA_4dDwog0b",
-);
-
-type Project = {
-  id: number;
+export type LevelData = {
+  id: number | string;
   tag: string;
   title: string;
   description: string;
   details: string;
   tech: string[];
-  site_url: string;
+  link: string;
 };
 
-function LevelSelect() {
-  const [projects, setProjects] = useState<Project[]>([]);
+interface LevelSelectProps {
+  data: LevelData[];
+  sectionTitle: string;
+  sectionContext: string;
+  mainBtnLabel: string;
+}
+
+function LevelSelect({
+  data,
+  sectionTitle,
+  sectionContext,
+  mainBtnLabel,
+}: LevelSelectProps) {
   const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    supabase
-      .from("Projects") // Cible la table nommée Projects
-      .select("*") // Demande de récupérer toutes les colonnes
-      .order("id", { ascending: true }) // Trie les projets par leur identifiant (du plus petit au plus grand)
-      .then(({ data }) => setProjects(data || []));
-  }, []);
+  if (!data || data.length === 0) return null;
 
-  const next = () => setIndex((index + 1) % projects.length);
-  const prev = () => setIndex((index - 1 + projects.length) % projects.length);
-
-  // Empêcher le rendu si les données ne sont pas là
-  if (!projects || projects.length === 0) {
-    return;
-  }
-
-  const current = projects[index];
+  const current = data[index];
+  const next = () => setIndex((index + 1) % data.length);
+  const prev = () => setIndex((index - 1 + data.length) % data.length);
 
   return (
     <section className="levelSelect">
       <BackgroundParticles />
-
       <div className="fixed-wrapper">
         <div className="main-grid">
           <Reveal>
@@ -62,7 +54,6 @@ function LevelSelect() {
                     </div>
                   </div>
                 </div>
-
                 <div className="interface">
                   <div className="d-pad">
                     <button className="up"></button>
@@ -70,7 +61,6 @@ function LevelSelect() {
                     <button className="right" onClick={next}></button>
                     <button className="down"></button>
                   </div>
-
                   <div className="action-btns">
                     <button className="btn-b" onClick={prev}>
                       <span>◀</span>
@@ -87,34 +77,28 @@ function LevelSelect() {
           <div className="content-column">
             <Reveal>
               <div className="info-block">
-                <h2>MODE PROJETS</h2>
-                <p className="context">
-                  Exploration des archives numériques. Sélectionnez un projet
-                  pour voir les détails techniques et les liens de déploiement.
-                </p>
-                <BtnGhost to="/arcades">INVENTAIRE CARTOUCHES</BtnGhost>
+                <h2>{sectionTitle}</h2>
+                <p className="context">{sectionContext}</p>
+                <BtnGhost to="/arcades">RETOUR INVENTAIRE</BtnGhost>
               </div>
             </Reveal>
 
             <Reveal>
               <div className="specs-block">
-                <h3>Détails techniques</h3>
+                <h3>Infos supplémentaires</h3>
                 <p className="long-desc">{current.details}</p>
-
                 <div className="inventory">
-                  {current.tech &&
-                    current.tech.map((t, i) => (
-                      <span
-                        key={i}
-                        className="tech-badge"
-                        style={{ animationDelay: `${i * 0.05}s` }}
-                      >
-                        {t}
-                      </span>
-                    ))}
+                  {current.tech.map((t, i) => (
+                    <span
+                      key={i}
+                      className="tech-badge"
+                      style={{ animationDelay: `${i * 0.05}s` }}
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
-
-                <BtnContact to={`/arcades/${current.title.toLowerCase()}`}>EXPLORER LE PROJET</BtnContact>
+                <BtnContact to={current.link}>{mainBtnLabel}</BtnContact>
               </div>
             </Reveal>
           </div>

@@ -69,7 +69,7 @@ const JeuxAbout = () => {
                   <TetrisPiece
                     key={b.id}
                     block={b}
-                    onClick={(id: any) => setPlaced(placed.filter((p) => p.id !== id))}
+                    onClick={(id: number) => setPlaced(placed.filter((p) => p.id !== id))}
                     className="placed-piece"
                   />
                 ))}
