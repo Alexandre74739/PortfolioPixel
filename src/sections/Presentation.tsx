@@ -12,7 +12,7 @@ const Presentation = () => {
 
       <div className="container">
         <Reveal>
-          <h2 className="section-title">MODE HISTOIRE</h2>
+          <h2 className="section-title">LOG DE MISSION</h2>
           <div className="section-line"></div>
         </Reveal>
 
