@@ -43,8 +43,7 @@ function Skills() {
             </h2>
             <div className="header-line"></div>
             <p className="terminal-bio">
-              <span className="prompt">{">"}</span> Développeur passionné par{" "}
-              <strong>l'animation</strong>, l'alliance entre
+              L'alliance entre l'<strong>animation</strong>
               <strong> l'esthétique rétro</strong> et les{" "}
               <strong>performances modernes</strong>. Je conçois des interfaces
               autant ludiques que pertinentes pour transformer chaque projet en
