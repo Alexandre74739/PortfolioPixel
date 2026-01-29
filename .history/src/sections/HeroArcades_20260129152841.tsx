@@ -150,25 +150,4 @@ const HeroArcades = () => {
             </Reveal>
             <Reveal>
               <p className="hero-subtitle">
-                Plongez dans l'univers de mes réalisations. <br />
-                À chaque jeu ses compétences.
-              </p>
-            </Reveal>
-            <Reveal>
-              <div className="hero-actions">
-                <BtnContact to="/histoire">SELECT HISTOIRE</BtnContact>
-                <BtnGhost to="/contact">SELECT PROJECTS</BtnGhost>
-              </div>
-            </Reveal>
-            <div className="scroll-indicator">
-              <div className="mouse"><div className="wheel"></div></div>
-              <span>READY TO PLAY</span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
-  );
-};
-
-export default HeroArcades;
+                Plongez dans l

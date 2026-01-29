@@ -114,7 +114,7 @@ const HeroArcades = () => {
               </div>
             </div>
 
-            {/* Clavier Virtuel */}
+            {/* Clavier Virtuel */}   
             <div className="virtual-keyboard">
               {keyboardKeys.map((row, rowIndex) => (
                 <div key={rowIndex} className="keyboard-row">

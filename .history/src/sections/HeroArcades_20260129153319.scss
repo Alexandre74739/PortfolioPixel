@@ -1,0 +1,115 @@
+@import "../../variables";
+
+.hero-arcades-cheat {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: #fdfdfd; // Fond clair
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .lock-overlay {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+
+    .monitor-minimal {
+      position: relative;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.05);
+
+      .screen {
+        width: 400px;
+        height: 250px;
+        background: #1a1a1a;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-family: monospace;
+
+        .interface {
+          text-align: center;
+          .secure-tag { font-size: 0.6rem; color: #666; letter-spacing: 2px; }
+          .input-visualizer {
+            font-size: 2rem;
+            margin: 1.5rem 0;
+            color: #b86bff;
+            .blink { animation: blink 1s infinite; }
+          }
+          .status-msg { font-size: 0.7rem; color: #444; }
+        }
+      }
+
+      .post-it {
+        position: absolute;
+        top: -20px;
+        right: -60px;
+        background: #fff9c4;
+        padding: 15px;
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+        transform: rotate(5deg);
+        color: #333;
+        font-family: 'Comic Sans MS', cursive; // Pour l'effet manuscrit
+        font-size: 0.8rem;
+        border-radius: 2px;
+        .pin { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); }
+        p { margin: 0; }
+        .hint-word { font-weight: bold; letter-spacing: 2px; margin-top: 5px; }
+      }
+    }
+
+    .azerty-keyboard {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      .k-row {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        .key {
+          width: 40px;
+          height: 40px;
+          border: 1px solid #eee;
+          background: #fff;
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.8rem;
+          font-family: sans-serif;
+          color: #999;
+          transition: all 0.1s;
+          &.active {
+            background: #b86bff;
+            color: #fff;
+            transform: translateY(2px);
+            border-color: #b86bff;
+          }
+        }
+      }
+    }
+  }
+
+  // --- CONTENU HERO CLASSIQUE ---
+  .hero-content {
+    text-align: center;
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900;
+      .pixel-text { color: #b86bff; }
+    }
+    .hero-subtitle { color: #666; margin: 2rem 0; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; }
+  }
+}
+
+@keyframes blink { 50% { opacity: 0; } }

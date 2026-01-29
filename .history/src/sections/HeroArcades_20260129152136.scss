@@ -1,0 +1,147 @@
+@import "../../variables";
+
+.hero-arcades {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  // --- DESIGN DE LA BORNE D'ARCADE ---
+  .arcade-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    z-index: 10;
+
+    .arcade-cabinet {
+      width: 280px;
+      background: #333;
+      border-radius: 10px 10px 0 0;
+      padding: 15px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+
+      .marquee {
+        background: #1a1a1a;
+        color: #b86bff;
+        text-align: center;
+        font-family: monospace;
+        font-weight: bold;
+        padding: 5px;
+        border: 2px solid #444;
+        margin-bottom: 15px;
+        font-size: 0.8rem;
+      }
+
+      .screen-area {
+        position: relative;
+        height: 180px;
+        background: #111;
+        border-radius: 4px;
+        border: 8px solid #222;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .crt-effect {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), 
+                      linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+          background-size: 100% 4px, 3px 100%;
+          pointer-events: none;
+        }
+
+        .loading-state {
+          text-align: center;
+          color: #fff;
+          font-family: monospace;
+          font-size: 0.7rem;
+
+          .blink { animation: blink 1s infinite; display: block; margin-bottom: 1rem; color: #ff4b4b; }
+          .mini-progress {
+            width: 140px;
+            height: 8px;
+            background: #222;
+            border: 1px solid #444;
+            .bar { height: 100%; background: #b86bff; }
+          }
+        }
+      }
+
+      .controls-panel {
+        margin-top: 15px;
+        height: 60px;
+        background: #444;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        
+        .joystick {
+          width: 30px; height: 30px; background: #222; border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          .stick { width: 12px; height: 12px; background: #ff4b4b; border-radius: 50%; }
+        }
+        .buttons {
+          display: flex; gap: 8px;
+          .btn { width: 15px; height: 15px; border-radius: 50%; }
+          .red { background: #ff4b4b; } .blue { background: #4ecdc4; }
+        }
+      }
+    }
+
+    // --- DESIGN DE LA CARTOUCHE ---
+    .game-cartridge {
+      width: 120px;
+      height: 140px;
+      background: #d1d1d1;
+      border-radius: 4px 4px 8px 8px;
+      border-bottom: 6px solid #b1b1b1;
+      cursor: grab;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+      &:active { cursor: grabbing; }
+
+      .cartridge-label {
+        flex: 1;
+        background: #b86bff;
+        border-radius: 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-family: sans-serif;
+        
+        .label-title { font-weight: 900; font-size: 0.8rem; letter-spacing: 1px; }
+        .label-subtitle { font-size: 0.4rem; opacity: 0.8; }
+      }
+
+      .pins {
+        height: 15px;
+        margin-top: 10px;
+        background: repeating-linear-gradient(90deg, #b18e3a, #b18e3a 4px, #d1d1d1 4px, #d1d1d1 8px);
+      }
+
+      .drag-handle {
+        margin-top: 10px;
+        font-family: monospace;
+        font-size: 0.5rem;
+        text-align: center;
+        color: #888;
+      }
+    }
+  }
+}
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
