@@ -1,0 +1,828 @@
+@import "../../variables";
+
+.hero-arcades {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a0033 0%, #0a001a 100%);
+  overflow: hidden;
+  padding: 1rem;
+
+  @media (max-width: $breakpoint-m) {
+    padding: 0.5rem;
+  }
+
+  // Effet de glitch global
+  &.glitch-active {
+    animation: glitch-skew 0.3s ease;
+
+    .game-screen::before {
+      opacity: 0.8;
+    }
+  }
+
+  .glitch-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+
+    .glitch-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: repeating-linear-gradient(
+        90deg,
+        #ff00ff 0px,
+        #00ffff 2px,
+        #ff00ff 4px
+      );
+      animation: glitch-horizontal 0.3s linear infinite;
+    }
+  }
+
+  .kong-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 95vh;
+    background: linear-gradient(180deg, #1a001a 0%, #000 100%);
+    border: 8px solid #b86bff;
+    border-radius: 4px;
+    box-shadow: 
+      0 0 0 4px #000,
+      0 0 40px rgba(184, 107, 255, 0.6),
+      inset 0 0 100px rgba(184, 107, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    @media (max-width: $breakpoint-m) {
+      border: 4px solid #b86bff;
+      height: 98vh;
+    }
+  }
+
+  // === HEADER (Score, High Score, Lives) ===
+  .game-header {
+    background: linear-gradient(180deg, #2a0052 0%, #000 100%);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #b86bff;
+    position: relative;
+    z-index: 10;
+
+    @media (max-width: $breakpoint-m) {
+      padding: 0.8rem 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        #00ffff, 
+        transparent
+      );
+      animation: scan-horizontal 3s linear infinite;
+    }
+
+    .score-panel,
+    .high-score-panel,
+    .lives-panel,
+    .coins-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .label {
+        font-family: $font-display;
+        font-size: 0.7rem;
+        color: #b86bff;
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px #b86bff;
+      }
+
+      .value {
+        font-family: $font-display;
+        font-size: 1.2rem;
+        color: #fff;
+        text-shadow: 0 0 15px #00ffff;
+      }
+    }
+
+    .lives-panel {
+      .lives-icons {
+        display: flex;
+        gap: 4px;
+
+        .life-icon {
+          font-size: 1.2rem;
+          color: #ff6bff;
+          animation: pulse-radar-light 2s infinite;
+          filter: drop-shadow(0 0 8px #ff6bff);
+        }
+      }
+    }
+
+    @media (max-width: $breakpoint-m) {
+      .score-panel,
+      .high-score-panel,
+      .lives-panel,
+      .coins-panel {
+        .label {
+          font-size: 0.6rem;
+        }
+        .value {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  // === ÉCRAN DE JEU PRINCIPAL ===
+  .game-screen {
+    flex: 1;
+    position: relative;
+    background: 
+      linear-gradient(180deg, 
+        #1a0033 0%, 
+        #0d001a 50%, 
+        #000 100%
+      );
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1rem;
+    overflow: hidden;
+
+    @media (max-width: $breakpoint-m) {
+      padding: 1rem 0.5rem;
+    }
+
+    // Effet de grille en arrière-plan
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: 
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 19px,
+          rgba(184, 107, 255, 0.15) 20px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 19px,
+          rgba(184, 107, 255, 0.15) 20px
+        );
+      opacity: 0.4;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    // Effet scanline
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(255, 255, 255, 0.02) 51%
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+      animation: scan 8s linear infinite;
+    }
+  }
+
+  // === BARRELS TOMBANTS ===
+  .falling-barrel {
+    position: absolute;
+    font-size: 2.5rem;
+    color: #ff8c00;
+    text-shadow: 2px 2px 0 #000;
+    z-index: 10;
+    filter: drop-shadow(0 0 10px #ff8c00);
+    pointer-events: none;
+  }
+
+  // === PIÈCES COLLECTIBLES ===
+  .collectible-coin {
+    position: absolute;
+    font-size: 2rem;
+    cursor: grab;
+    z-index: 20;
+    touch-action: none;
+    user-select: none;
+    filter: drop-shadow(0 0 15px #ffff00);
+    animation: float-coin 2s ease-in-out infinite;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &.coin-bottom {
+      bottom: 2rem;
+      right: 15%;
+    }
+  }
+
+  // === PLATEFORMES ===
+  .platform {
+    position: relative;
+    width: 100%;
+    min-height: 80px;
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        #b86bff 0px,
+        #b86bff 20px,
+        #9a4eff 20px,
+        #9a4eff 40px
+      );
+    border: 4px solid #000;
+    border-radius: 4px;
+    box-shadow: 
+      0 4px 0 #7a3fbf,
+      inset 0 -4px 0 rgba(0, 0, 0, 0.3),
+      0 0 20px rgba(184, 107, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    z-index: 5;
+
+    @media (max-width: $breakpoint-m) {
+      min-height: 60px;
+      padding: 0.8rem 1rem;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+      );
+    }
+  }
+
+  .platform-top {
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        #ff6bff 0px,
+        #ff6bff 20px,
+        #cc4bcc 20px,
+        #cc4bcc 40px
+      );
+    box-shadow: 
+      0 4px 0 #993f99,
+      inset 0 -4px 0 rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(255, 107, 255, 0.5);
+    min-height: 100px;
+    justify-content: space-between;
+
+    @media (max-width: $breakpoint-m) {
+      min-height: 80px;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .barrels-container {
+      display: flex;
+      gap: 8px;
+
+      .barrel {
+        font-size: 2rem;
+        color: #ff8c00;
+        text-shadow: 2px 2px 0 #000;
+        filter: drop-shadow(0 0 10px #ff8c00);
+      }
+    }
+
+    .game-title {
+      font-family: $font-display;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      color: #00ffff;
+      text-shadow: 
+        4px 4px 0 #ff00ff,
+        8px 8px 0 #000,
+        0 0 30px #00ffff;
+      margin: 0;
+      letter-spacing: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      position: relative;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &.glitch-text {
+        animation: glitch-anim 0.3s infinite;
+      }
+
+      .glitch-copy {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+
+      &.glitch-text .glitch-copy:nth-child(2) {
+        color: #ff00ff;
+        animation: glitch-copy-1 0.3s infinite;
+      }
+
+      &.glitch-text .glitch-copy:nth-child(3) {
+        color: #00ffff;
+        animation: glitch-copy-2 0.3s infinite;
+      }
+    }
+  }
+
+  .platform-2 {
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        #7a9fff 0px,
+        #7a9fff 20px,
+        #5a7fef 20px,
+        #5a7fef 40px
+      );
+
+    .stats-row {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      @media (max-width: $breakpoint-m) {
+        gap: 1rem;
+      }
+
+      .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 8px 16px;
+        border: 3px solid #fff;
+        border-radius: 4px;
+        box-shadow: 
+          3px 3px 0 #000,
+          0 0 15px rgba(184, 107, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        .stat-icon {
+          font-size: 1.5rem;
+        }
+
+        .stat-text {
+          font-family: $font-display;
+          font-size: 0.9rem;
+          color: #fff;
+          text-shadow: 2px 2px 0 #000;
+        }
+
+        @media (max-width: $breakpoint-m) {
+          padding: 6px 12px;
+
+          .stat-icon {
+            font-size: 1.2rem;
+          }
+
+          .stat-text {
+            font-size: 0.75rem;
+          }
+        }
+      }
+    }
+  }
+
+  .platform-3 {
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        #9bff9b 0px,
+        #9bff9b 20px,
+        #7bef7b 20px,
+        #7bef7b 40px
+      );
+
+    .game-subtitle {
+      font-family: $font-display;
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      color: #fff;
+      text-shadow: 2px 2px 0 #000;
+      text-align: center;
+      margin: 0;
+      line-height: 1.6;
+
+      .subtitle-hint {
+        display: block;
+        font-size: 0.7rem;
+        color: #00ffff;
+        margin-top: 8px;
+        text-shadow: 0 0 10px #00ffff;
+      }
+    }
+  }
+
+  .platform-bottom {
+    position: relative;
+    min-height: 100px;
+    background: 
+      repeating-linear-gradient(
+        90deg,
+        #ffff6b 0px,
+        #ffff6b 20px,
+        #efef4b 20px,
+        #efef4b 40px
+      );
+    box-shadow: 
+      0 4px 0 #bfbf3b,
+      inset 0 -4px 0 rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(255, 255, 107, 0.4);
+
+    @media (max-width: $breakpoint-m) {
+      min-height: 80px;
+    }
+
+    .start-button {
+      background: linear-gradient(180deg, #ff6bff 0%, #cc4bcc 100%);
+      color: #fff;
+      font-family: $font-display;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      padding: 1rem 2.5rem;
+      border: 4px solid #000;
+      border-radius: 4px;
+      box-shadow: 
+        0 6px 0 #660066,
+        0 8px 20px rgba(255, 107, 255, 0.5),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      overflow: hidden;
+      filter: drop-shadow(0 0 20px #ff6bff);
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -100%;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, 
+          transparent, 
+          rgba(255, 255, 255, 0.8), 
+          transparent
+        );
+        animation: shine 2s ease-in-out infinite;
+      }
+
+      .btn-icon {
+        animation: blink 1s infinite steps(2);
+      }
+
+      @media (max-width: $breakpoint-m) {
+        padding: 0.8rem 2rem;
+        font-size: 1.2rem;
+      }
+    }
+
+    .player-character {
+      position: absolute;
+      bottom: 1rem;
+      width: 40px;
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: left 0.1s ease;
+      z-index: 15;
+
+      @media (max-width: $breakpoint-m) {
+        width: 30px;
+        height: 45px;
+      }
+
+      .character-head {
+        width: 20px;
+        height: 20px;
+        background: #ffcc99;
+        border: 3px solid #000;
+        border-radius: 50%;
+        position: relative;
+        box-shadow: 0 0 10px rgba(255, 204, 153, 0.5);
+
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: #000;
+          border-radius: 50%;
+          top: 6px;
+        }
+
+        &::before {
+          left: 4px;
+        }
+
+        &::after {
+          right: 4px;
+        }
+      }
+
+      .character-body {
+        width: 24px;
+        height: 20px;
+        background: #b86bff;
+        border: 3px solid #000;
+        margin-top: 2px;
+        box-shadow: 0 0 10px rgba(184, 107, 255, 0.5);
+      }
+
+      .character-legs {
+        display: flex;
+        gap: 4px;
+        margin-top: 2px;
+
+        &::before,
+        &::after {
+          content: "";
+          width: 8px;
+          height: 16px;
+          background: #00ffff;
+          border: 3px solid #000;
+          box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+      }
+    }
+  }
+
+  // === ÉCHELLES ===
+  .ladder {
+    position: absolute;
+    width: 40px;
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 18px,
+        #ff8c00 18px,
+        #ff8c00 22px
+      );
+    border-left: 6px solid #ff8c00;
+    border-right: 6px solid #ff8c00;
+    z-index: 4;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+
+    @media (max-width: $breakpoint-m) {
+      width: 30px;
+      border-left: 4px solid #ff8c00;
+      border-right: 4px solid #ff8c00;
+    }
+  }
+
+  .ladder-1 {
+    left: 25%;
+    top: 18%;
+    height: 15%;
+  }
+
+  .ladder-2 {
+    right: 30%;
+    top: 38%;
+    height: 15%;
+  }
+
+  .ladder-3 {
+    left: 35%;
+    bottom: 25%;
+    height: 15%;
+  }
+
+  // === POUTRES DIAGONALES ===
+  .girder {
+    position: absolute;
+    height: 6px;
+    background: #8B4513;
+    box-shadow: 
+      0 2px 0 #5a2d0d,
+      inset 0 -2px 0 rgba(0, 0, 0, 0.5),
+      0 0 10px rgba(139, 69, 19, 0.3);
+    z-index: 2;
+
+    @media (max-width: $breakpoint-m) {
+      height: 4px;
+    }
+  }
+
+  .girder-1 {
+    width: 35%;
+    top: 25%;
+    left: 10%;
+    transform: rotate(-15deg);
+  }
+
+  .girder-2 {
+    width: 35%;
+    top: 25%;
+    right: 10%;
+    transform: rotate(15deg);
+  }
+
+  .girder-3 {
+    width: 30%;
+    bottom: 35%;
+    left: 15%;
+    transform: rotate(-10deg);
+  }
+
+  .girder-4 {
+    width: 30%;
+    bottom: 35%;
+    right: 15%;
+    transform: rotate(10deg);
+  }
+
+  // === FOOTER ===
+  .game-footer {
+    background: linear-gradient(0deg, #2a0052 0%, #000 100%);
+    padding: 1rem 2rem;
+    border-top: 4px solid #b86bff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+
+    @media (max-width: $breakpoint-m) {
+      padding: 0.8rem 1rem;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        #ff00ff, 
+        transparent
+      );
+      animation: scan-horizontal 3s linear infinite reverse;
+    }
+
+    .insert-coin {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: $font-display;
+      font-size: 1.2rem;
+      color: #ffff00;
+      text-shadow: 0 0 15px #ffff00;
+
+      .coin-blink {
+        font-size: 1.5rem;
+      }
+
+      @media (max-width: $breakpoint-m) {
+        font-size: 1rem;
+      }
+    }
+
+    .game-info {
+      font-family: $font-mono;
+      font-size: 0.8rem;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+
+      @media (max-width: $breakpoint-m) {
+        font-size: 0.7rem;
+      }
+    }
+
+    .controls-hint {
+      font-family: $font-mono;
+      font-size: 0.75rem;
+      color: #b86bff;
+      text-shadow: 0 0 8px #b86bff;
+
+      @media (max-width: $breakpoint-m) {
+        font-size: 0.65rem;
+      }
+    }
+  }
+}
+
+// === ANIMATIONS ===
+@keyframes float-coin {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+  }
+}
+
+@keyframes glitch-horizontal {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateX(-5px);
+  }
+  66% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes glitch-copy-1 {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-3px, 2px);
+  }
+}
+
+@keyframes glitch-copy-2 {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(3px, -2px);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 200%;
+  }
+}
+
+@keyframes scan-horizontal {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

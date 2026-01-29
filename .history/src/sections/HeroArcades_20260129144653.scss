@@ -1,0 +1,119 @@
+@import "../../variables";
+
+.hero-minimal {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa; // Fond clair
+  color: #2d3436;
+  overflow: hidden;
+  transition: background 0.8s ease; // Transition douce pour la rotation
+
+  // --- LOGIQUE DE ROTATION (Vos instructions) ---
+  &.landscape-mode {
+    background: #e0f2f1; // Change de couleur en paysage
+    
+    .main-title {
+      color: #00b894; // Titre change de couleur
+    }
+    
+    .bonus-text {
+      display: block;
+      color: #00b894;
+      font-weight: bold;
+      animation: blink 1s infinite;
+    }
+  }
+
+  .container {
+    max-width: 800px;
+    text-align: center;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  .game-hud {
+    position: absolute;
+    top: 2rem;
+    width: 100%;
+    left: 0;
+    font-family: monospace;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    opacity: 0.6;
+  }
+
+  .main-title {
+    font-size: clamp(3rem, 10vw, 6rem);
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 0.9;
+  }
+
+  .description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #636e72;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 4rem;
+  }
+
+  // --- ZONE DE JEU ---
+  .mini-game-track {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+
+    .player-dot {
+      position: absolute;
+      top: -6px;
+      width: 16px;
+      height: 16px;
+      background: #2d3436;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      
+      &::after {
+        content: "🕹️";
+        position: absolute;
+        top: -25px;
+        left: -4px;
+        font-size: 1.2rem;
+      }
+    }
+
+    .finish-line {
+      position: absolute;
+      right: 0;
+      top: -10px;
+      height: 24px;
+      width: 4px;
+      background: repeating-linear-gradient(
+        0deg,
+        #000 0px,
+        #000 4px,
+        #fff 4px,
+        #fff 8px
+      );
+    }
+  }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
