@@ -83,7 +83,7 @@ const HeroArcades = () => {
             key="lock-screen"
             className="lock-overlay"
             exit={{ opacity: 0, y: -50 }}
-          >
+          ><BackgroundParticles />
             <div className="monitor-frame">
               <div className="screen-content">
                 <div className="top-bar"><span>SYSTEM_STATUS</span><span>[ENCRYPTED]</span></div>

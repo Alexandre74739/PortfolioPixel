@@ -99,7 +99,7 @@ const HeroArcades = () => {
               </div>
               <div className="post-it">
                 <p>INDICE :</p>
-                <p>START→</p>
+                <p>START</p>
               </div>
             </div>
             <VirtualKeyboard

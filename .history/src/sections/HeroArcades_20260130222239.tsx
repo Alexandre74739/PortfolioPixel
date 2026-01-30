@@ -85,6 +85,7 @@ const HeroArcades = () => {
             exit={{ opacity: 0, y: -50 }}
           >
             <div className="monitor-frame">
+              <BackgroundParticles />
               <div className="screen-content">
                 <div className="top-bar"><span>SYSTEM_STATUS</span><span>[ENCRYPTED]</span></div>
                 <div className="main-display">

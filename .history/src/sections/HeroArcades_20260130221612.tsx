@@ -6,7 +6,7 @@ import BtnContact from "../components/utils/BtnContact";
 import BtnGhost from "../components/utils/BtnGhost";
 import "./HeroArcades.scss";
 
-const CHEAT_CODE = ['s', 't', 'a', 'r', 't', 'arrowright'];
+const CHEAT_CODE = ['s', 't', 'a', 'r', 't', ''];
 
 const HeroArcades = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -99,7 +99,7 @@ const HeroArcades = () => {
               </div>
               <div className="post-it">
                 <p>INDICE :</p>
-                <p>START→</p>
+                <p>START</p>
               </div>
             </div>
             <VirtualKeyboard

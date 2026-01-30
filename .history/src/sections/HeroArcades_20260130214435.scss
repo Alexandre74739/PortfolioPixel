@@ -1,0 +1,129 @@
+@import "../../variables";
+
+.hero-arcades-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; // Sécurité pour éviter tout scroll horizontal parasite
+  
+  .lock-overlay {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100vw; // On force la largeur de la vue
+    height: 100vh;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Centrage horizontal strict
+    justify-content: center;
+    padding: 20px;
+
+    @media (max-width: $breakpoint-m) {
+      padding-top: 80px; // Ton offset mobile
+      justify-content: flex-start; 
+    }
+
+    .monitor-frame {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto; // Force le centrage auto
+      background: #222;
+      border: 4px solid #333;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+
+      @media (max-width: $breakpoint-m) {
+        width: 100%; // On prend toute la place du padding parent
+        max-width: 320px; // Taille sécurisée pour les petits téléphones (iPhone SE etc.)
+        padding: 10px;
+      }
+
+      .screen-content {
+        background: #000;
+        width: 100%;
+        height: 220px;
+        border: 1px solid $color-border;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden; // Empêche le titre de dépasser
+
+        @media (max-width: $breakpoint-m) {
+          height: 160px;
+        }
+
+        // ... tes styles top-bar et glitch-title
+      }
+
+      .post-it {
+        position: absolute;
+        z-index: 10;
+        // Desktop
+        top: -10px; right: -40px; transform: rotate(5deg);
+        
+        @media (max-width: $breakpoint-m) {
+          // Mobile : repositionné pour ne pas pousser la largeur de page
+          top: auto;
+          bottom: -20px;
+          right: 10px; // On le colle à l'intérieur du bord droit
+          transform: rotate(-2deg);
+        }
+      }
+    }
+  }
+
+  // --- CLAVIER VIRTUEL CORRIGÉ ---
+  .virtual-keyboard {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 100%; // Empêche de déborder
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center; // Centre les lignes du clavier
+
+    @media (max-width: $breakpoint-m) {
+      margin-top: 50px;
+      gap: 5px;
+    }
+
+    .keyboard-row {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      width: 100%;
+      padding: 0 10px; // Padding de sécurité sur les côtés
+    }
+
+    .key-button {
+      flex: 1; // Permet aux touches de s'adapter à la largeur
+      max-width: 45px; // Mais pas trop larges non plus
+      height: 45px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #666;
+      font-family: $font-mono;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: $breakpoint-m) {
+        height: 40px;
+        font-size: 0.65rem;
+      }
+
+      &.active { background: #fff; color: #000; }
+    }
+  }
+}

@@ -6,7 +6,7 @@ import BtnContact from "../components/utils/BtnContact";
 import BtnGhost from "../components/utils/BtnGhost";
 import "./HeroArcades.scss";
 
-const CHEAT_CODE = ['s', 't', 'a', 'r', 't', 'arrowright'];
+const CHEAT_CODE = ['s', 'arrowleft', 'a', 'r', 'c', 'a', 'd', 'e', 'arrowleft', 'arrowright'];
 
 const HeroArcades = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -71,7 +71,7 @@ const HeroArcades = () => {
   ];
 
   const mobileKeys = [
-    ['a', 'r', 'c', 'd', 's', 't'],
+    ['a', 'r', 'c', 'a', 'd', 'e'],
     ['arrowleft', 'arrowright', 'del', 'enter']
   ];
 
@@ -79,8 +79,8 @@ const HeroArcades = () => {
     <section className={`hero-arcades-wrapper ${isUnlocked ? "unlocked" : "locked"}`}>
       <AnimatePresence mode="wait">
         {!isUnlocked ? (
-          <motion.div
-            key="lock-screen"
+          <motion.div 
+            key="lock-screen" 
             className="lock-overlay"
             exit={{ opacity: 0, y: -50 }}
           >
@@ -99,18 +99,18 @@ const HeroArcades = () => {
               </div>
               <div className="post-it">
                 <p>INDICE :</p>
-                <p>START→</p>
+                <p>→ ← ARCADES ← →</p>
               </div>
             </div>
-            <VirtualKeyboard
-              keys={isMobile ? mobileKeys : desktopKeys}
-              activeKey={activeKey}
-              onKeyPress={handleInput}
+            <VirtualKeyboard 
+              keys={isMobile ? mobileKeys : desktopKeys} 
+              activeKey={activeKey} 
+              onKeyPress={handleInput} 
             />
           </motion.div>
         ) : (
-          <motion.div
-            key="hero-content"
+          <motion.div 
+            key="hero-content" 
             className="hero-main-content"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           >

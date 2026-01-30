@@ -69,11 +69,11 @@
 
                 .glitch-title {
                     font-family: $font-display;
-                    font-size: clamp(1.5rem, 8vw, 2.5rem);
                     color: $color-primary;
                     letter-spacing: 5px;
                     text-align: center;
                     margin: 0;
+                    animation: glitch-anim 3s infinite;
                 }
 
                 .code-dots {

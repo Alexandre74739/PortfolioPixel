@@ -1,0 +1,387 @@
+@import "../../variables";
+
+.hero-arcades-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // --- INTERFACE VERROUILLÉE (DARK) ---
+  .lock-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 2rem;
+    overflow-y: auto;
+
+    @media (max-width: $breakpoint-m) {
+      padding: 15px;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: $breakpoint-xs) {
+      padding: 10px;
+      gap: 1rem;
+      justify-content: flex-start;
+      padding-top: 5vh;
+    }
+
+    .monitor-frame {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      background: #222;
+      border: 4px solid #333;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      flex-shrink: 0;
+
+      @media (max-width: $breakpoint-m) {
+        max-width: 450px;
+        padding: 12px;
+        border: 3px solid #333;
+      }
+
+      @media (max-width: $breakpoint-xs) {
+        max-width: 100%;
+        padding: 10px;
+        border: 2px solid #333;
+      }
+
+      .screen-content {
+        background: #000;
+        min-height: 220px;
+        height: auto;
+        border: 1px solid $color-border;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 2rem 1rem;
+
+        @media (max-width: $breakpoint-m) {
+          min-height: 200px;
+          padding: 1.5rem 1rem;
+        }
+
+        @media (max-width: $breakpoint-xs) {
+          min-height: 180px;
+          padding: 1rem 0.5rem;
+        }
+
+        .top-bar {
+          position: absolute;
+          top: 8px;
+          left: 10px;
+          right: 10px;
+          display: flex;
+          justify-content: space-between;
+          font-family: $font-mono;
+          font-size: 0.6rem;
+          color: #444;
+
+          @media (max-width: $breakpoint-xs) {
+            font-size: 0.5rem;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+          }
+        }
+
+        .glitch-title {
+          font-family: $font-display;
+          font-size: clamp(1.8rem, 6vw, 2.5rem);
+          color: $color-primary;
+          letter-spacing: 5px;
+          margin-bottom: 1rem;
+
+          @media (max-width: $breakpoint-xs) {
+            letter-spacing: 3px;
+          }
+        }
+
+        .code-dots {
+          display: flex;
+          gap: 10px;
+          margin-top: 20px;
+
+          @media (max-width: $breakpoint-xs) {
+            gap: 8px;
+            margin-top: 15px;
+          }
+
+          .dot {
+            width: 10px;
+            height: 10px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+
+            @media (max-width: $breakpoint-xs) {
+              width: 8px;
+              height: 8px;
+            }
+
+            &.filled {
+              background: $color-accent;
+              border-color: $color-accent;
+              box-shadow: 0 0 10px $color-accent;
+            }
+          }
+        }
+
+        .feedback {
+          position: absolute;
+          bottom: 20px;
+          font-family: $font-mono;
+          font-size: 0.7rem;
+          font-weight: bold;
+
+          @media (max-width: $breakpoint-xs) {
+            font-size: 0.65rem;
+            bottom: 15px;
+          }
+
+          &.correct {
+            color: $color-accent;
+            text-shadow: 0 0 10px $color-accent;
+          }
+
+          &.incorrect {
+            color: $color-primary;
+            text-shadow: 0 0 10px $color-primary;
+          }
+        }
+      }
+
+      .post-it {
+        position: absolute;
+        top: -10px;
+        right: -40px;
+        background: #fff9c4;
+        color: #333;
+        padding: 10px;
+        transform: rotate(5deg);
+        font-family: $font-mono;
+        font-size: 0.7rem;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+
+        @media (max-width: $breakpoint-m) {
+          top: -8px;
+          right: -30px;
+          padding: 8px;
+          font-size: 0.65rem;
+        }
+
+        @media (max-width: $breakpoint-xs) {
+          position: static;
+          transform: rotate(0deg);
+          margin-top: 15px;
+          width: 100%;
+          text-align: center;
+        }
+
+        p {
+          margin: 0;
+          font-weight: bold;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+
+  // --- CLAVIER VIRTUEL ---
+  .virtual-keyboard {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 600px;
+    width: 100%;
+    flex-shrink: 0;
+
+    @media (max-width: $breakpoint-m) {
+      margin-top: 30px;
+      max-width: 500px;
+      gap: 6px;
+    }
+
+    @media (max-width: $breakpoint-xs) {
+      margin-top: 20px;
+      gap: 5px;
+    }
+
+    .keyboard-row {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+
+      @media (max-width: $breakpoint-xs) {
+        gap: 4px;
+      }
+    }
+
+    .key-button {
+      min-width: 45px;
+      height: 45px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #666;
+      font-family: $font-mono;
+      font-size: 0.85rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: manipulation;
+      user-select: none;
+
+      @media (max-width: $breakpoint-m) {
+        min-width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+      }
+
+      @media (max-width: $breakpoint-xs) {
+        min-width: 35px;
+        height: 38px;
+        font-size: 0.75rem;
+      }
+
+      &.active {
+        background: #fff;
+        color: #000;
+        transform: scale(0.95);
+      }
+
+      &.special {
+        background: #252525;
+        color: $color-secondary;
+        min-width: 55px;
+
+        @media (max-width: $breakpoint-m) {
+          min-width: 50px;
+        }
+
+        @media (max-width: $breakpoint-xs) {
+          min-width: 45px;
+        }
+      }
+
+      &:hover {
+        border-color: #666;
+        background: #252525;
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  // --- CONTENU HERO (LIGHT) ---
+  .hero-main-content {
+    width: 100%;
+    min-height: 100vh;
+    background: $color-bg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+
+    @media (max-width: $breakpoint-m) {
+      padding: 1.5rem;
+    }
+
+    @media (max-width: $breakpoint-xs) {
+      padding: 1rem;
+    }
+
+    .content-inner {
+      z-index: 1;
+      max-width: 900px;
+      width: 100%;
+
+      .label-top {
+        font-family: $font-mono;
+        font-size: 0.8rem;
+        color: #999;
+        letter-spacing: 3px;
+        display: block;
+        margin-bottom: 1rem;
+
+        @media (max-width: $breakpoint-xs) {
+          font-size: 0.7rem;
+          letter-spacing: 2px;
+        }
+      }
+
+      .hero-title {
+        font-family: $font-display;
+        font-size: clamp(2rem, 8vw, 5rem);
+        color: $color-text-main;
+        margin: 1rem 0;
+        line-height: 1.2;
+
+        .accent {
+          color: $color-primary;
+        }
+      }
+
+      .hero-subtitle {
+        max-width: 600px;
+        margin: 1.5rem auto;
+        color: #666;
+        font-family: "Lexend", sans-serif;
+        line-height: 1.6;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+
+        @media (max-width: $breakpoint-xs) {
+          margin: 1rem auto;
+        }
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 40px;
+        flex-wrap: wrap;
+
+        @media (max-width: $breakpoint-m) {
+          gap: 15px;
+          margin-top: 30px;
+        }
+
+        @media (max-width: $breakpoint-xs) {
+          flex-direction: column;
+          gap: 12px;
+          margin-top: 25px;
+          align-items: center;
+
+          a,
+          button {
+            width: 100%;
+            max-width: 300px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -78,6 +78,7 @@ const HeroArcades = () => {
   return (
     <section className={`hero-arcades-wrapper ${isUnlocked ? "unlocked" : "locked"}`}>
       <AnimatePresence mode="wait">
+        <BackgroundParticles />
         {!isUnlocked ? (
           <motion.div
             key="lock-screen"

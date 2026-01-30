@@ -6,7 +6,7 @@ function Arcades() {
         <div>
             <h1>Projects Page</h1>
             <HeroArcades />
-            <Presentation />
+            <
         </div>
     );
 }
