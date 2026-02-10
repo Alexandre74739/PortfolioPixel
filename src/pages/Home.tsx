@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "../data/supabaseClient";
 import Hero from "../sections/Hero";
 import EasterEgg from "../sections/SpaceManifesto";
 import Skills from "../sections/Skills";
 import LevelSelect, { type LevelData } from "../sections/LevelSelect";
-
-const supabase = createClient(
-  "https://ehqrctyduhhiesscpxlc.supabase.co",
-  "sb_publishable_d3PLocPLQdML-l7IPTKNEA_4dDwog0b",
-);
 
 function Home() {
   const [projects, setProjects] = useState<LevelData[]>([]);
