@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/utils/ScrollToTop";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import './App.scss';
@@ -12,6 +13,8 @@ import Contact from "./pages/Contact";
 function App() {
   return (
     <Router>
+      <ScrollToTop />
+      
       <div className="app-wrapper">
         <Header />
 

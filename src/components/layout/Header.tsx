@@ -22,9 +22,9 @@ function Header() {
 
       <div className="header-inner">
         <Link to="/" className="header-logo" onClick={closeMenu}>
-          <span className="text-main">ALEXANDRE</span>
-          <span className="text-glitch red">ALEXANDRE</span>
-          <span className="text-glitch blue">ALEXANDRE</span>
+          <span className="text-main">PEREZPIXEL</span>
+          <span className="text-glitch red">PEREZPIXEL</span>
+          <span className="text-glitch blue">PEREZPIXEL</span>
         </Link>
 
         <nav className="nav-desktop">
