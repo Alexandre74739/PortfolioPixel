@@ -16,6 +16,39 @@ interface Project {
   details: string;
 }
 
+// Fonction pour déterminer la classe du projet basée sur les techno
+const getProjectClass = (tech: string[]): string => {
+  if (!tech || tech.length === 0) return "support";
+  
+  const techString = tech.join(" ").toLowerCase();
+  
+  if (techString.includes("react")) {
+    return "dpt";
+  } 
+  else if (techString.includes("ux") || techString.includes("ui") || techString.includes("figma")) {
+    return "support";
+  } 
+  else if (techString.includes("java")) {
+    return "tank";
+  }
+  
+  return "support";
+};
+
+// Fonction pour convertir la classe en label d'affichage
+const getClassLabel = (className: string): string => {
+  switch (className) {
+    case "dpt":
+      return "DPT";
+    case "support":
+      return "SUPPORT";
+    case "tank":
+      return "TANK";
+    default:
+      return "SUPPORT";
+  }
+};
+
 function Projects() {
   const navigate = useNavigate();
   const [projects, setProjects] = useState<Project[]>([]);
@@ -66,37 +99,45 @@ function Projects() {
         </Reveal>
 
         <div className="projects-grid">
-          {projects.map((project) => (
-            <Reveal key={project.id}>
-              <div className="project-wrapper">
-                <div className="project-card">
-                  <div className="card-scanner"></div>
-
-                  <div className="card-top">
-                    <span className="tier-badge">{project.tag}</span>
-                    <span className="class-label">
-                      #{project.id.toString().padStart(2, "0")}
-                    </span>
-                  </div>
-
-                  <h3 className="project-name">{project.title}</h3>
-
-                  <p className="project-desc">{project.description}</p>
-
-                  {project.tech && project.tech.length > 0 && (
-                    <div className="tech-tags">
-                      {project.tech.slice(0, 3).map((tech, i) => (
-                        <span key={i} className="tech-tag">
-                          {tech}
-                        </span>
-                      ))}
+          {projects.map((project) => {
+            const projectClass = getProjectClass(project.tech);
+            const classLabel = getClassLabel(projectClass);
+            
+            return (
+              <Reveal key={project.id}>
+                <div className="project-wrapper">
+                  <div 
+                    className={`project-card ${projectClass}`}
+                    onClick={() => handleProjectClick(project.title)}
+                  >
+                    <div className="card-scanner"></div>
+                    
+                    <div className="card-top">
+                      <span className="tier-badge">{project.tag}</span>
+                      <span className="class-label">{classLabel}</span>
                     </div>
-                  )}
-                </div>
 
-              </div>
-            </Reveal>
-          ))}
+                    <h3 className="project-name" data-text={project.title}>
+                      {project.title}
+                    </h3>
+
+                    <p className="project-desc">{project.description}</p>
+
+                    {project.tech && project.tech.length > 0 && (
+                      <div className="tech-tags">
+                        {project.tech.slice(0, 3).map((tech, i) => (
+                          <span key={i} className="tech-tag">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
