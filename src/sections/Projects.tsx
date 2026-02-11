@@ -63,7 +63,6 @@ function Projects() {
       if (data && !error) {
         setProjects(data);
       }
-      setLoading(false);
     };
 
     fetchProjects();
