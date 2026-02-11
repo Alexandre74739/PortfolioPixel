@@ -1,73 +1,43 @@
-# React + TypeScript + Vite
+# 🕹️ Pixel Portfolio - Dual World Edition
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenue dans le dépôt de mon portfolio basé sur l'esthétique du **Pixel Art** et du rétrogaming.
 
-Currently, two official plugins are available:
+## 🌟 Le Concept : "The Glitch Dimension"
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Le portfolio propose deux ambiances visuelles distinctes :
+- **Mode Normal (City) :** Un univers pixel art coloré, propre et accueillant.
+- **Mode Glitch (Debug) :** Une version alternative révélée par l'interaction.
 
-## React Compiler
+### 🕹️ Mécaniques de changement d'ambiance
+- **Sur Mobile :** Le monde bascule en inclinant physiquement le téléphone.
+- **Sur PC :** Une interaction narrative spécifique insertion de cartouche en Drag & Drop permet de révéler la dimension cachée.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+## 🛠️ Stack Technique & Dépendances
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Fondations
+* **[React 18](https://reactjs.org/)** (TypeScript) : Bibliothèque principale pour une interface réactive et un code typé.
+* **[Vite](https://vitejs.dev/)** : Outil de build ultra-rapide pour le développement local.
+  
+  ```npm create vite@latest```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Navigation
+* **[React Router Dom](https://reactrouter.com/)** : Gestion du routage Single Page Application (SPA) pour des transitions fluides entre Accueil, À Propos, Projets et Contact.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+   ```npm install react-router-dom```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Styling & Animations
+* **[Sass (SCSS)](https://sass-lang.com/)** : Utilisé pour le style et les animations complexes (effets de glitch, transitions de sprites, keyframes avancées).
+  
+  ```npm install -D sass```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+* Reveal des blocs et les icons
+  
+  ```npm instamm framer-motion```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  ```npm install react-icons```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### API
+* **[Supabase](https://supabase.com/)** : Gestion d'une base de données pour modifier le nombre de projets, leur affichage et leur description
+  
+  ```npm install @supabase/supabase-js```
