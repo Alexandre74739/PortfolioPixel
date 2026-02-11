@@ -52,7 +52,6 @@ const getClassLabel = (className: string): string => {
 function Projects() {
   const navigate = useNavigate();
   const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -64,7 +63,6 @@ function Projects() {
       if (data && !error) {
         setProjects(data);
       }
-      setLoading(false);
     };
 
     fetchProjects();
