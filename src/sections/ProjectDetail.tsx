@@ -32,7 +32,7 @@ function ProjectDetail() {
       const { data, error: fetchError } = await supabase
         .from("SpecifiqueProject")
         .select("*")
-        .ilike("title", projectName.replace(/-/g, " "))
+        .ilike("title", projectName)
         .single();
 
       if (fetchError || !data) {
