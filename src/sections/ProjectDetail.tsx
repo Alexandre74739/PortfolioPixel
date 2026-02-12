@@ -182,7 +182,7 @@ function ProjectDetail() {
         )}
 
         <div className="detail-footer">
-          <BtnGhost to="/arcades">◀ SYSTEM_EXIT</BtnGhost>
+          <BtnGhost to="/arcades">SYSTEM_EXIT</BtnGhost>
         </div>
       </div>
     </section>
