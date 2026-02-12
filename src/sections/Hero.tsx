@@ -86,9 +86,9 @@ function Hero() {
             </div>
 
             <p className="hero-description">
-              Spécialisé en <strong>React</strong>, <strong>UX/UI</strong> et{" "}
-              <strong>Java</strong>. Je traduis ma passion pour l'
-              <strong>animation</strong> en expériences web fluides et humaines
+              Spécialisé en <span>React</span>, <span>UX/UI</span> et{" "}
+              <span>Java</span>. Je traduis ma passion pour l'
+              <span>animation</span> en expériences web fluides et humaines
               afin d'instruire autant que divertir.
             </p>
 

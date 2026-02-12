@@ -193,6 +193,11 @@
                     @media (max-width: $breakpoint-lg) {
                         margin-inline: auto;
                     }
+
+                    span {
+                        color: $color-primary;
+                        font-weight: 500;
+                    }
                 }
 
                 .hero-actions {

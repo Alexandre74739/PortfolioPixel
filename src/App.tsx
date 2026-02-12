@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/utils/ScrollToTop";
 import Header from "./components/layout/Header";
+import ProjectDetail from "./sections/ProjectDetail";
 import Footer from "./components/layout/Footer";
-import './App.scss';
+import "./App.scss";
 
 // Pages
 import Home from "./pages/Home";
@@ -14,7 +15,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      
+
       <div className="app-wrapper">
         <Header />
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/histoire" element={<Histoire />} />
             <Route path="/arcades" element={<Arcades />} />
+            <Route path="/arcades/:projectName" element={<ProjectDetail />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

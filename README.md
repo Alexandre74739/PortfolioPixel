@@ -5,10 +5,11 @@ Bienvenue dans le dépôt de mon portfolio basé sur l'esthétique du **Pixel Ar
 ## 🌟 Le Concept : "The Glitch Dimension"
 
 Le portfolio propose deux ambiances visuelles distinctes :
-- **Mode Normal (City) :** Un univers pixel art coloré, propre et accueillant.
+- **Mode Normal (City) :** Un univers pixel art coloré, propre et accueillant avec des easter-egg à retrouver.
+Dans le futur une deuxième ambiance sera mis à disposition
 - **Mode Glitch (Debug) :** Une version alternative révélée par l'interaction.
 
-### 🕹️ Mécaniques de changement d'ambiance
+### 🕹️ Mécaniques de changement d'ambiance furtur
 - **Sur Mobile :** Le monde bascule en inclinant physiquement le téléphone.
 - **Sur PC :** Une interaction narrative spécifique insertion de cartouche en Drag & Drop permet de révéler la dimension cachée.
 
