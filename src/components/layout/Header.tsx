@@ -22,9 +22,12 @@ function Header() {
 
       <div className="header-inner">
         <Link to="/" className="header-logo" onClick={closeMenu}>
-          <span className="text-main">PEREZPIXEL</span>
-          <span className="text-glitch red">PEREZPIXEL</span>
-          <span className="text-glitch blue">PEREZPIXEL</span>
+          <img src="../../src/assets/Logo.png" alt="Logo" />
+          <div className="logo-text-wrapper">
+            <span className="text-main">PEREZPIXEL</span>
+            <span className="text-glitch red">PEREZPIXEL</span>
+            <span className="text-glitch blue">PEREZPIXEL</span>
+          </div>
         </Link>
 
         <nav className="nav-desktop">

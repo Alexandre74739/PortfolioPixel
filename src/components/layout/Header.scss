@@ -46,10 +46,26 @@
 
         .header-logo {
             position: relative;
+            display: flex;
+            align-items: center;
+            gap: 16px;
             font-family: $font-display;
             font-size: 1.8rem;
             text-decoration: none;
             letter-spacing: -1px;
+
+            .logo-img {
+                object-fit: contain;
+                flex-shrink: 0;
+            }
+
+            .logo-text-wrapper {
+                position: relative; // Devient la référence pour le positionnement absolute du glitch
+                font-family: $font-display;
+                font-size: 1.8rem;
+                letter-spacing: -1px;
+                line-height: 1; // Aide à l'alignement vertical
+            }
 
             .text-main {
                 position: relative;
@@ -89,7 +105,7 @@
             align-items: center;
             gap: 20px;
 
-            @media (min-width: $breakpoint-m) {
+            @media (min-width: $breakpoint-lg) {
                 display: flex;
             }
         }
@@ -104,7 +120,7 @@
             cursor: pointer;
             box-shadow: 3px 3px 0px $color-text-main;
 
-            @media (min-width: $breakpoint-m) {
+            @media (min-width: $breakpoint-lg) {
                 display: none;
             }
 
