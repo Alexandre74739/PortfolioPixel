@@ -72,7 +72,7 @@ function Hero() {
             </div>
 
             <h1 className="hero-title">
-              ALEXANDRE
+              PEREZ Alexandre-Philippe
               <br />
               <span className="hero-subtitle">Développeur Web</span>
             </h1>
