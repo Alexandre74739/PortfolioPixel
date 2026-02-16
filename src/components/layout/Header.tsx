@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import BtnContact from "../utils/BtnContact";
 import BtnGhost from "../utils/BtnGhost";
+import LogoImg from "../../assets/Logo.png";
 import "./Header.scss";
 
 function Header() {
@@ -22,7 +23,7 @@ function Header() {
 
       <div className="header-inner">
         <Link to="/" className="header-logo" onClick={closeMenu}>
-          <img src="../../src/assets/Logo.png" alt="Logo" />
+          <img src={LogoImg} alt="Logo" />
           <div className="logo-text-wrapper">
             <span className="text-main">PEREZPIXEL</span>
             <span className="text-glitch red">PEREZPIXEL</span>
