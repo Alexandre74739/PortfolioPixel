@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BackgroundParticles from "../components/utils/BackgroundParticles";
 import VirtualKeyboard from "../components/utils/VirtualKeyboard";
-import BtnContact from "../components/utils/BtnContact";
-import BtnGhost from "../components/utils/BtnGhost";
 import "./HeroArcades.scss";
 
 const CHEAT_CODE = ["s", "t", "a", "r", "t", "arrowright"];
