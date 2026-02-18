@@ -121,7 +121,7 @@ const JeuxAbout: React.FC = () => {
             <div className="content-panel">
               <InfoPanel quote={quote} />
               <div className="final-actions">
-                <BtnGhost to="/projets">SELECT PROJECTS</BtnGhost>
+                <BtnGhost to="/arcades">SELECT PROJECTS</BtnGhost>
                 <BtnContact to="/contact">SELECT CONTACT</BtnContact>
               </div>
             </div>

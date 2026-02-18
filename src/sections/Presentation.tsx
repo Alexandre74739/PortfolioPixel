@@ -48,7 +48,7 @@ const Presentation = () => {
                 <p>
                   Je ne parle pas de mon diplôme en prestidigitation mais de ma
                   créativité et de mon apprentissage technique de{" "}
-                  <strong>React</strong> et <strong>JAVA</strong>. Je construis
+                  <strong>React</strong> et <strong>Java</strong>. Je construis
                   ainsi ma boîte à outils de développeur avec la même rigueur
                   que je prépare mes grands jeux avec les enfants.
                 </p>

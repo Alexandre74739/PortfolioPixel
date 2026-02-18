@@ -130,7 +130,7 @@ const HeroArcades = () => {
                 </div>
               </div>
               <div className="post-it">
-                <p>INDICE :</p>
+                <p>SOLUTION :</p>
                 <p>START→</p>
               </div>
             </div>
@@ -158,10 +158,6 @@ const HeroArcades = () => {
                 Plongez dans l'univers de mes réalisations. À chaque jeu ses
                 compétences.
               </p>
-              <div className="hero-actions">
-                <BtnContact to="/histoire">SELECT HISTOIRE</BtnContact>
-                <BtnGhost to="/contact">SELECT PROJECTS</BtnGhost>
-              </div>
             </div>
           </motion.div>
         )}

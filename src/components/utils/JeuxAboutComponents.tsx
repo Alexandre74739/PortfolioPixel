@@ -21,7 +21,7 @@ export const InfoPanel = ({ quote }: { quote: string }) => (
       <h2>POURQUOI LE PIXEL ?</h2>
       <p>
         Le <strong>pixel</strong> c'est le début, une base solide qui, comme
-        moi, peux porter des mondes bien plus vastes.
+        moi, peut porter des mondes bien plus vastes.
       </p>
     </div>
     <div className="quote-box">

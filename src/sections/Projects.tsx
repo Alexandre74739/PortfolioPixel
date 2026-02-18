@@ -86,7 +86,7 @@ function Projects() {
               Bienvenue dans les <strong>arcades</strong>. Chaque projet est une
               itération optimisée entre
               <strong> performance technique</strong> et{" "}
-              <strong>design réflechi</strong>. Analysez mes réalisations et
+              <strong>design réfléchi</strong>. Analysez mes réalisations et
               découvrez mon univers.
             </p>
             <div className="btns">

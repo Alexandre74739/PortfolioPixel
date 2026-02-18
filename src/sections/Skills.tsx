@@ -43,7 +43,7 @@ function Skills() {
             </h2>
             <div className="header-line"></div>
             <p className="terminal-bio">
-              L'alliance entre l'<strong>animation</strong>
+              L'alliance entre l'<strong>animation</strong>,
               <strong> l'esthétique rétro</strong> et les{" "}
               <strong>performances modernes</strong>. Je conçois des interfaces
               autant ludiques que pertinentes pour transformer chaque projet en

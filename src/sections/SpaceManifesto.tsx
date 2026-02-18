@@ -86,7 +86,7 @@ const SpaceManifesto = () => {
                     animate={{ opacity: 1, x: 0 }}
                     className="secret-coord"
                   >
-                    COORDONNÉES DÉCHIPHRÉES : "ALERTE : Vague d'envahisseurs détectée !!!".
+                    COORDONNÉES DÉCHIFFRÉES : "ALERTE : Vague d'envahisseurs détectée !!!".
                   </motion.p>
                 )}
               </AnimatePresence>
