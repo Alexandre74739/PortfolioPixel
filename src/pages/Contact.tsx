@@ -8,7 +8,7 @@ function Contact() {
       title: "Email",
       description: "Disponible pour vos futurs recrutements et projets.",
       details:
-        "Je réponds généralement en moins de 24h. Idéal pour les demandes formelles ou les collaborations long-terme.",
+        "Je réponds généralement en moins de 24h. Idéal pour les demandes formelles ou les collaborations long terme.",
       tech: [],
       link: "mailto:perezalexandre430@gmail.com",
     },
@@ -28,7 +28,7 @@ function Contact() {
       title: "GitHub",
       description: "Explorez ma façon de coder dans mes repositories.",
       details:
-        "Mes projets personnels, mes expériences techniques et plus globalement ma manière d'apprendre et développer.",
+        "Mes projets personnels, mes expériences techniques et plus globalement ma manière d'apprendre et de développer.",
       tech: [],
       link: "https://github.com/Alexandre74739",
     },
