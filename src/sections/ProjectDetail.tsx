@@ -16,7 +16,8 @@ interface SpecifiqueProject {
   cibles: string | null;
   contraintes: string | null;
   illustrations: string[] | null;
-  lien: string | null;
+  lienSite: string | null;
+  lienGithub: string;
 }
 
 function ProjectDetail() {
@@ -69,20 +70,36 @@ function ProjectDetail() {
             <h1 className="project-title-hero" data-text={details.title}>
               {details.title}
             </h1>
-            {details.lien && (
-              <a
-                href={details.lien}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="radar-link-module"
-              >
-                <div className="radar-ping"></div>
-                <div className="radar-content">
-                  <span className="status-label">LIVE_PREVIEW : </span>
-                  <span className="secret-coord">{details.title}</span>
-                </div>
-              </a>
-            )}
+            <div className="btnLiens">
+              {details.lienSite && (
+                <a
+                  href={details.lienSite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="radar-link-module"
+                >
+                  <div className="radar-ping"></div>
+                  <div className="radar-content">
+                    <span className="status-label">LIVE_PREVIEW : </span>
+                    <span className="secret-coord">{details.title}</span>
+                  </div>
+                </a>
+              )}
+              {details.lienGithub && (
+                <a
+                  href={details.lienGithub}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="radar-link-module"
+                >
+                  <div className="radar-ping"></div>
+                  <div className="radar-content">
+                    <span className="status-label">SOURCE_CODE : </span>
+                    <span className="secret-coord">{details.title}</span>
+                  </div>
+                </a>
+              )}
+            </div>
           </div>
         </Reveal>
 

@@ -31,13 +31,25 @@ const Footer = ({ currentTheme }: FooterProps) => {
 
         <div className="footer-section social-items">
           <div className="social-links">
-            <a href="https://www.linkedin.com/in/alexandre74739/">
+            <a
+              href="https://www.linkedin.com/in/alexandre74739/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaLinkedin />
             </a>
-            <a href="https://github.com/Alexandre74739">
+            <a
+              href="https://github.com/Alexandre74739"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaGithub />
             </a>
-            <a href="mailto:perezalexandre430@gmail.com">
+            <a
+              href="mailto:perezalexandre430@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaEnvelope />
             </a>
           </div>

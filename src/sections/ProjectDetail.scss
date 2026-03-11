@@ -30,96 +30,107 @@
       text-transform: uppercase;
 
       &::before,
-        &::after {
-          content: attr(data-text);
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
-      
-        &::before {
-          left: 2px;
-          text-shadow: -2px 0 $color-secondary;
-          clip: rect(44px, 450px, 56px, 0);
-          animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
-      
-        &::after {
-          left: -2px;
-          text-shadow: -2px 0 $color-info;
-          clip: rect(44px, 450px, 56px, 0);
-          animation: glitch-anim 3s infinite linear alternate-reverse;
-        }
-      
-        &:hover {
-          animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-    }
+      &::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
 
-    .radar-link-module {
-      display: inline-flex;
-      align-items: center;
-      gap: 20px;
-      background: $color-surface;
-      padding: 12px 24px;
-      border: 1px solid $color-border;
-      box-shadow: 8px 8px 0px $color-text-main;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: pointer;
+      &::before {
+        left: 2px;
+        text-shadow: -2px 0 $color-secondary;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+      }
+
+      &::after {
+        left: -2px;
+        text-shadow: -2px 0 $color-info;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 3s infinite linear alternate-reverse;
+      }
 
       &:hover {
-        transform: translate(-4px, -4px);
-        box-shadow: 10px 10px 0px $color-primary;
-        border-color: $color-primary;
+        animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
+    }
 
-      &:active {
-        transform: translate(0, 0);
-        box-shadow: 2px 2px 0px $color-primary;
-      }
+    .btnLiens {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
 
-      .radar-ping {
-        position: relative;
-        width: 8px;
-        height: 8px;
-        background: $color-text-main;
-        border-radius: 50%;
-
-        &::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: 50%;
-          border: 1px solid $color-text-main;
-          animation: manifestoPulse 2s infinite cubic-bezier(0.24, 0, 0.38, 1);
-        }
-      }
-
-      .radar-content {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: center;
+      @media (max-width: $breakpoint-m) {
+        flex-direction: column;
         align-items: center;
-        gap: 8px;
       }
 
-      .status-label {
-        font-family: $font-display;
-        font-size: 1rem;
-        letter-spacing: 1px;
-        color: $color-text-main;
-        text-transform: uppercase;
-      }
+      .radar-link-module {
+        display: inline-flex;
+        align-items: center;
+        gap: 20px;
+        background: $color-surface;
+        padding: 12px 24px;
+        border: 1px solid $color-border;
+        box-shadow: 8px 8px 0px $color-text-main;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
 
-      .secret-coord {
-        color: $color-primary;
-        font-family: $font-mono;
-        font-weight: bold;
-        font-size: 1rem;
+        &:hover {
+          transform: translate(-4px, -4px);
+          box-shadow: 10px 10px 0px $color-primary;
+          border-color: $color-primary;
+        }
+
+        &:active {
+          transform: translate(0, 0);
+          box-shadow: 2px 2px 0px $color-primary;
+        }
+
+        .radar-ping {
+          position: relative;
+          width: 8px;
+          height: 8px;
+          background: $color-text-main;
+          border-radius: 50%;
+
+          &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px solid $color-text-main;
+            animation: manifestoPulse 2s infinite cubic-bezier(0.24, 0, 0.38, 1);
+          }
+        }
+
+        .radar-content {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .status-label {
+          font-family: $font-display;
+          font-size: 1rem;
+          letter-spacing: 1px;
+          color: $color-text-main;
+          text-transform: uppercase;
+        }
+
+        .secret-coord {
+          color: $color-primary;
+          font-family: $font-mono;
+          font-weight: bold;
+          font-size: 1rem;
+        }
       }
     }
   }
