@@ -95,7 +95,7 @@ function ProjectDetail() {
                   <div className="radar-ping"></div>
                   <div className="radar-content">
                     <span className="status-label">SOURCE_CODE : </span>
-                    <span className="secret-coord">{details.title}</span>
+                    <span className="secret-coord">Github</span>
                   </div>
                 </a>
               )}
