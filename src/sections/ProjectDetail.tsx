@@ -15,7 +15,10 @@ interface SpecifiqueProject {
   objectifs: string | null;
   cibles: string | null;
   contraintes: string | null;
-  illustrations: string[] | null;
+  illustrations: string | null;
+  apport: string | null;
+  temoignage: string | null;
+  auteur: string | null;
   lienSite: string | null;
   lienGithub: string;
 }
@@ -126,7 +129,7 @@ function ProjectDetail() {
         {details.objectifs && (
           <Reveal>
             <div className="data-block objectives-block">
-              <div className="coord">[03] MISSION_OBJECTIVES</div>
+              <div className="coord">[03] MISSION & OBJECTIFS</div>
               <div className="objectifs-content">
                 <span className="arcade-icon">🎯</span>
                 <p className="section-text">{details.objectifs}</p>
@@ -194,6 +197,25 @@ function ProjectDetail() {
                   </div>
                 )}
               </div>
+            </div>
+          </Reveal>
+        )}
+
+        {details.apport && (
+          <Reveal>
+            <div className="data-block">
+              <div className="coord">[07] APPORT</div>
+              <p className="section-text">{details.apport}</p>
+            </div>
+          </Reveal>
+        )}
+
+        {details.temoignage && (
+          <Reveal>
+            <div className="data-block">
+              <div className="coord">[08] TÉMOIGNAGE</div>
+              <p className="section-text">{details.temoignage}</p>
+              <p className="section-text-auteur">— {details.auteur}</p>
             </div>
           </Reveal>
         )}
