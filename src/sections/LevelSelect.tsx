@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import nécessaire pour la Home
 import { Reveal } from "../components/layout/Reveal";
 import BackgroundParticles from "../components/utils/BackgroundParticles";
 import BtnContact from "../components/utils/BtnContact";
@@ -20,6 +21,7 @@ interface LevelSelectProps {
   sectionTitle: string;
   sectionContext: string;
   mainBtnLabel: string;
+  isExternal?: boolean;
 }
 
 function LevelSelect({
@@ -27,14 +29,26 @@ function LevelSelect({
   sectionTitle,
   sectionContext,
   mainBtnLabel,
+  isExternal = false,
 }: LevelSelectProps) {
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
 
   if (!data || data.length === 0) return null;
 
   const current = data[index];
   const next = () => setIndex((index + 1) % data.length);
   const prev = () => setIndex((index - 1 + data.length) % data.length);
+
+  const handleAction = () => {
+    if (isExternal) {
+      // Force l'ouverture dans un nouvel onglet pour tout (y compris mailto)
+      window.open(current.link, "_blank", "noopener,noreferrer");
+    } else {
+      // Navigation sur la même page (pour la Home)
+      navigate(current.link);
+    }
+  };
 
   return (
     <section className="levelSelect">
@@ -98,7 +112,13 @@ function LevelSelect({
                     </span>
                   ))}
                 </div>
-                <BtnContact to={current.link}>{mainBtnLabel}</BtnContact>
+                {/* On déclenche handleAction au clic sur le conteneur du bouton */}
+                <div
+                  onClick={handleAction}
+                  style={{ cursor: "pointer", display: "inline-block" }}
+                >
+                  <BtnContact to="#">{mainBtnLabel}</BtnContact>
+                </div>
               </div>
             </Reveal>
           </div>

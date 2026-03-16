@@ -46,6 +46,7 @@ function Contact() {
         sectionTitle="CONTACTEZ-MOI"
         sectionContext="Utilisez la console pour naviguer entre les différents moyens de me joindre."
         mainBtnLabel="OUVRIR LA CONNEXION"
+        isExternal={true}
       />
     </div>
   );
