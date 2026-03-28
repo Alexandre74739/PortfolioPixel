@@ -204,7 +204,7 @@ function ProjectDetail() {
         {details.apport && (
           <Reveal>
             <div className="data-block">
-              <div className="coord">[07] APPORT</div>
+              <div className="coord">[07] APPORTS</div>
               <p className="section-text">{details.apport}</p>
             </div>
           </Reveal>
