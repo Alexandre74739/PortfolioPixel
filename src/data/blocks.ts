@@ -58,6 +58,20 @@ export const library: Block[] = [
     text: "Programmation orienté objet.",
   },
   {
+    id: "tailwind",
+    label: "TAILWIND",
+    color: "red",
+    shape: "l-shape",
+    text: "Stylisation modulaire et maintenance CSS facilitée.",
+  },
+  {
+    id: "Nextjs",
+    label: "NEXTJS",
+    color: "orange",
+    shape: "o-shape",
+    text: "Framework React pour le rendu côté serveur.",
+  },
+  {
     id: "framer",
     label: "FRAMER",
     color: "yellow",
